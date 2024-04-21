@@ -1,17 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+/* Ajustes de página */
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body img {
+  width: 30%;
+  height: 40%;
+}
+
+/* Formulario Login */
 .Login-form {
   width: 60vw;
+  height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  font-family: "Inter", sans-serif;
 }
 
 .Login-form h1 {
   font-size: 1.5em;
+  font-family: "Inter";
 }
 
 .Login-form input {
   width: 70%;
   height: 1.5em;
   border-radius: 15px;
+  margin-bottom: 2em;
+  border: 1px solid #838cf1;
+}
+
+.Login-form label {
+  width: 70%;
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.Login-form button {
+  width: 70%;
+  height: 2em;
+  border-radius: 15px;
+  margin-top: 2em;
+  background-color: #838cf1;
+  border: 1px solid #838cf1;
+  color: beige;
+  transition: all 1s linear;
+}
+
+.Login-form button:hover {
+  background-color: #585da3;
+  transition: all 0.5s linear;
 }
