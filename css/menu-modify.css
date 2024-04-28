@@ -1,0 +1,10 @@
+.hero-cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+ .btn_salir {
+    margin-right: 10px;
+ }
