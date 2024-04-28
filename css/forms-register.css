@@ -1,0 +1,40 @@
+.form {
+    width: 50%;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+  
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    color: #6c757d;
+    pointer-events: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .form-control:focus + label,
+  .form-control:not(:placeholder-shown) + label {
+    top: -0.75rem;
+    left: 0.75rem;
+    font-size: 0.75rem;
+    background-color: white; /* Opcional: para ocultar el texto cuando está sobre el campo */
+    border: 1px solid #ced4da; /* Opcional: restablecer el borde para ocultar el texto cuando está sobre el campo */
+  }
+
+  .options {
+    min-height: 90vh;
+  }
