@@ -78,3 +78,7 @@ h2 {
   transition: all 0.5s linear;
   scale: 1.02;
 }
+
+.btn {
+  cursor: pointer;
+}
