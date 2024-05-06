@@ -23,6 +23,7 @@ CREATE TABLE Empleados
     Segundo_Nombre VARCHAR(30) NULL,
     Primer_Apellido VARCHAR(30) NOT NULL,
     Segundo_Apellido VARCHAR(30) NOT NULL, 
+    Correo_Electronico VARCHAR(100) NULL,
     Numero_Seguridad_Social VARCHAR(9) NOT NULL,
     Salario FLOAT NOT NULL,
     Tipo_Nomina VARCHAR(30) NOT NULL,
