@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/normalize.css" />
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/forms-register.css" />
     <link rel="shortcut icon" href="../../img/global/lavanderia.png" />
     <title>Notas</title>
@@ -26,11 +26,7 @@
         </div>
         <div class="form-group">
           <input type="tel" class="form-control" required />
-          <label for="tel-clientes">Teléfono del cliente:</label>
-        </div>
-        <div class="form-group">
-          <input type="tel" class="form-control" required />
-          <label for="tel-empleado">Teléfono del empleado:</label>
+          <label for="tel-clientes">Contacto del cliente:</label>
         </div>
         <div class="form-group">
           <select class="form-control" required>
@@ -41,16 +37,36 @@
           <label for="Servicio">Tipo de servicio:</label>
         </div>
         <div class="form-group">
-          <input type="tel" class="form-control" required />
-          <label for="contacto">Contacto del cliente:</label>
+          <select class="form-control" required>
+            <option value="1">Lavado</option>
+            <option value="2">Planchado</option>
+            <option value="3">Secado</option>
+          </select>
+          <label for="Servicio">Tipo de prendas</label>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" required />
+          <label for="contacto">Número de prendas</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" required />
+          <label for="contacto">Color de prendas</label>
         </div>
         <div class="form-group">
           <input type="date" class="form-control" required />
-          <label for="fecha">Fecha de entrega (estimada):</label>
+          <label for="fecha">Fecha de entrega</label>
         </div>
         <div class="form-group">
           <input type="time" class="form-control" required />
-          <label for="tipo">Hora de entrega (estimada):</label>
+          <label for="tipo">Hora de entrega (estimada)</label>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" required />
+          <label for="tipo">Precio total</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" required />
+          <label for="tipo">Notas adicionales</label>
         </div>
         <button type="submit" class="submit">Guardar</button>
       </form>
