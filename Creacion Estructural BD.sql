@@ -1,6 +1,5 @@
 CREATE SCHEMA Tintoreria_Aries;
 
-DROP SCHEMA Tintoreria_Aries;
 USE Tintoreria_Aries;
 
 -- Relacion de clientes
@@ -25,7 +24,7 @@ CREATE TABLE Empleados
     Primer_Apellido VARCHAR(30) NOT NULL,
     Segundo_Apellido VARCHAR(30) NOT NULL, 
     Correo_Electronico VARCHAR(100) NULL,
-    Numero_Seguridad_Social VARCHAR(9) NOT NULL,
+    Numero_Seguridad_Social VARCHAR(11) NOT NULL,
     Salario FLOAT NOT NULL,
     Tipo_Nomina VARCHAR(30) NOT NULL,
     Vigente BOOLEAN NOT NULL, 
@@ -88,8 +87,8 @@ CREATE TABLE Mostrador
 	Folio_Nota_PK_FK INT NOT NULL,
     Fecha_Entrada_PK DATE NOT NULL,
     Hora_Entrada TIME NOT NULL,
-    Fecha_Salida DATE NOT NULL,
-    Hora_Salida TIME,
+    Fecha_Salida DATE NULL,
+    Hora_Salida TIME NULL,
     Identificador_Area_FK CHAR(3) NOT NULL,
     Area_Siguiente CHAR(3) NOT NULL,
     Estatus Boolean NOT NULL,
@@ -104,8 +103,8 @@ CREATE TABLE Planta
 	Folio_Nota_PK_FK INT NOT NULL,
     Fecha_Entrada_PK DATE NOT NULL,
     Hora_Entrada TIME NOT NULL,
-    Fecha_Salida DATE NOT NULL,
-    Hora_Salida TIME NOT NULL,
+    Fecha_Salida DATE NULL,
+    Hora_Salida TIME NULL,
     Identificador_Area_FK Char(3) NOT NULL,
     Area_Siguiente Char(3) NOT NULL,
     Estatus Boolean NOT NULL,
@@ -120,8 +119,8 @@ CREATE TABLE Lavado
 	Folio_Nota_PK_FK INT NOT NULL,
     Fecha_Entrada_PK DATE NOT NULL,
     Hora_Entrada TIME NOT NULL,
-    Fecha_Salida DATE NOT NULL,
-    Hora_Salida TIME NOT NULL,
+    Fecha_Salida DATE NULL,
+    Hora_Salida TIME NULL,
     Identificador_Area_FK Char(3) NOT NULL,
     Area_Siguiente Char(3) NOT NULL,
     Estatus Boolean NOT NULL,
@@ -136,8 +135,8 @@ CREATE TABLE Planchado
 	Folio_Nota_PK_FK INT NOT NULL,
     Fecha_Entrada_PK DATE NOT NULL,
     Hora_Entrada TIME NOT NULL,
-    Fecha_Salida DATE NOT NULL,
-    Hora_Salida TIME NOT NULL,
+    Fecha_Salida DATE NULL,
+    Hora_Salida TIME NULL,
     Identificador_Area_FK Char(3) NOT NULL,
     Area_Siguiente Char(3) NOT NULL,
     Estatus Boolean NOT NULL,
@@ -177,7 +176,7 @@ CREATE TABLE Productos
     Nombre_Producto VARCHAR(100) NOT NULL,
     Piezas INT NOT NULL,
     UM VARCHAR(20) NOT NULL,
-    Descripcion_Producto VARCHAR(100) NOT NULL, 
+    Descripcion_Producto VARCHAR(200) NOT NULL, 
     Precio_Unitario FLOAT NOT NULL,
     CONSTRAINT Productos PRIMARY KEY(Clave_Producto_PK)
 );
@@ -203,9 +202,9 @@ CREATE TABLE Proveedores
     Metodo_Pago VARCHAR(40) NOT NULL,
     Catalogo_Producto VARCHAR(50) NOT NULL,
     Calle VARCHAR(50) NOT NULL,
-    Numero_Exterior INT NOT NULL,
+    Numero_Exterior VARCHAR(6) NOT NULL,
     Colonia VARCHAR(40) NOT NULL,
-    Codigo_Postal INT NOT NULL,
+    Codigo_Postal VARCHAR(5) NOT NULL,
     Municipio VARCHAR(50) NOT NULL,
     Estado VARCHAR(50) NOT NULL,
     CONSTRAINT Proveedores priMARY KEY(Nombre_Distribuidora_PK)
