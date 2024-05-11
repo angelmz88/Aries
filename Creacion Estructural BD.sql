@@ -1,5 +1,6 @@
 CREATE SCHEMA Tintoreria_Aries;
 
+DROP SCHEMA Tintoreria_Aries;
 USE Tintoreria_Aries;
 
 -- Relacion de clientes
@@ -11,7 +12,7 @@ CREATE TABLE Clientes
     Primer_Apellido VARCHAR(30) NOT NULL,
     Segundo_Apellido VARCHAR(30) NOT NULL, 
     Calle VARCHAR(50) NULL,
-    Numero_Exterior INT NULL,
+    Numero_Exterior VARCHAR(6) NULL,
 	CONSTRAINT Clientes PRIMARY KEY(Numero_Telefono_PK)
 );
 
