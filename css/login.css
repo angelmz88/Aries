@@ -1,0 +1,84 @@
+/* Ajustes de página */
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.login {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.body-img {
+  width: 30%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  display: flex;
+  align-self: flex-end;
+  margin: 30px;
+}
+
+/* Formulario Login */
+.Login-form {
+  width: 60vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login-form h1 {
+  font-size: 1.5em;
+}
+
+.Login-form input {
+  width: 70%;
+  height: 2em;
+  border-radius: 15px;
+  margin-bottom: 2em;
+  border: 1px solid #838cf1;
+}
+
+.Login-form label {
+  width: 70%;
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.Login-form button {
+  width: 70%;
+  height: 2.5em;
+  border-radius: 15px;
+  margin-top: 2em;
+  background-color: #838cf1;
+  border: 1px solid #838cf1;
+  color: beige;
+  transition: all 1s linear;
+}
+
+.Login-form button:hover {
+  background-color: #585da3;
+  transition: all 0.5s linear;
+  scale: 1.02;
+}
+
+.btn {
+  cursor: pointer;
+}
