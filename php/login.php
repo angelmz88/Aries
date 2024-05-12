@@ -17,14 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["username"] = $username; // Establecer una variable de sesión para indicar que el usuario ha iniciado sesión
         echo "Inicio de sesión exitoso. ¡Bienvenido!";
         // Redirigir a otra página
-        header("Location: ../Pages/empleado.php");
+
+        if ($username == '374659827') {
+            header("Location: ../Pages/jefe.php");
+        } else {
+            header("Location: ../Pages/empleado.php");
+        }
         exit(); // Asegúrate de salir del script después de la redirección
     } else {
         // Las credenciales son incorrectas
         echo "Nombre de usuario o contraseña incorrectos.";
         echo '<script>';
         echo 'alert("Nombre de usuario o contraseña incorrectos.");';
-        echo 'window.location.href = "../index.html";'; // Redirige a otra_pagina.php después de que el usuario haga clic en "Aceptar"
+        echo 'window.location.href = "../index.php";'; // Redirige a otra_pagina.php después de que el usuario haga clic en "Aceptar"
         echo '</script>';
         // header("Location: ../index.html");
     }

@@ -1,3 +1,6 @@
+<?php
+include ("empleados/../../../../php/final_sesion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -15,7 +18,7 @@
     </header>
     <section class="hero">
       <div class="hero-cover">
-        <h1>EDITAR PRODUCTO</h1>
+        <h1>AGREGAR PRODUCTO</h1>
       </div>
     </section>
     <section class="options">
@@ -52,13 +55,13 @@
           <input type="number" class="form-control" required />
           <label for="tipo">Stock minimo para las alertas</label>
         </div>
-        <button type="submit" class="submit">Actualizar</button>
+        <button type="submit" class="submit">Guardar</button>
       </form>
       <script src="../../JS/registro-nota.js"></script>
     </section>
     <footer class="footer">
-      <a href="../inventario/inventario.html" class="btn_salir">Regresar</a>
-      <a href="../../../index.html" class="btn_salir">Salir</a>
+      <a href="../inventario/inventario.php" class="btn_salir">Regresar</a>
+      <a href="inventario/../../../../php/salir.php" class="btn_salir">Salir</a>
     </footer>
   </body>
 </html>

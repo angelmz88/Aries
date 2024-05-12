@@ -14,6 +14,6 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // Redirigir al usuario a la página de inicio o a cualquier otra página después de cerrar la sesión
-header("Location: ../index.html"); // Cambia 'index.php' por la página a la que quieras redirigir al usuario
+header("Location: ../index.php"); // Cambia 'index.php' por la página a la que quieras redirigir al usuario
 exit();
 ?>
