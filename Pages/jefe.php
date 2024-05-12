@@ -22,13 +22,13 @@ include ("pages/../../php/sesion.php");
     <nav class="nav">
       <ul class="nav-ul">
         <li>
-          <a href="../Pages/jefe/inventario/inventario.html">INVENTARIO</a>
+          <a href="../Pages/jefe/inventario/inventario.php">INVENTARIO</a>
         </li>
         <li>
-          <a href="../Pages/jefe/empleados/empleados.html">EMPLEADOS</a>
+          <a href="../Pages/jefe/empleados/empleados.php">EMPLEADOS</a>
         </li>
         <li>
-          <a href="../Pages/jefe/proveedores/proveedores.html">PROVEEDORES</a>
+          <a href="../Pages/jefe/proveedores/proveedores.php">PROVEEDORES</a>
         </li>
       </ul>
     </nav>

@@ -21,8 +21,8 @@ include ("pages/../../php/sesion.php");
     <h1>SIAUTO (Sistema Integral de Automatización y Control)</h1>
     <nav class="nav">
       <ul class="nav-ul">
-        <li><a href="../Pages/clientes/alta.html">CREAR</a></li>
-        <li><a href="../Pages/clientes/consultar.html">CONSULTAR</a></li>
+        <li><a href="../Pages/clientes/alta.php">CREAR</a></li>
+        <li><a href="../Pages/clientes/consultar.php">CONSULTAR</a></li>
       </ul>
     </nav>
   </header>
@@ -32,13 +32,13 @@ include ("pages/../../php/sesion.php");
     </div>
   </section>
   <section class="options">
-    <a href="../Pages/clientes/alta.html" class="option-card">
+    <a href="../Pages/clientes/alta.php" class="option-card">
       <div class="card-item">
         <img src="../img/nota/crear.png" alt="Alta de usuarios" />
         <h3>ALTA</h3>
       </div>
     </a>
-    <a href="../Pages/clientes/consultar.html" class="option-card">
+    <a href="../Pages/clientes/consultar.php" class="option-card">
       <div class="card-item">
         <img src="../img/nota/buscar.png" alt="Buscar nota" />
         <h3>CONSULTAR</h3>

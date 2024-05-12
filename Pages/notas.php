@@ -20,9 +20,9 @@ include ("pages/../../php/sesion.php");
     <h1>SIAUTO (Sistema Integral de Automatización y Control)</h1>
     <nav class="nav">
       <ul class="nav-ul">
-        <li><a href="../Pages/notas/crear.html">CREAR</a></li>
-        <li><a href="../Pages/notas/buscar.html">CONSULTAR</a></li>
-        <li><a href="../Pages/notas/servicio.html">SERVICIO EXTERNO</a></li>
+        <li><a href="../Pages/notas/crear.php">CREAR</a></li>
+        <li><a href="../Pages/notas/buscar.php">CONSULTAR</a></li>
+        <li><a href="../Pages/notas/servicio.php">SERVICIO EXTERNO</a></li>
       </ul>
     </nav>
   </header>
