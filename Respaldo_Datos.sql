@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `Tintoreria_Aries` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `Tintoreria_Aries`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: tintoreria_aries
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -96,7 +94,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES ('5503288379','Eduardo',NULL,'Romero','Torralba ','Oriente 19','176'),('5504711160','Araceli',NULL,'Ramirez','Gonzalez ','Oriente 1','132'),('5526015450','Erika',NULL,'Castro','Dominguez ','Jose Maria Morelos','127'),('5529628501','Julieta',NULL,'Cruz','Cruz ','Oriente 34','23'),('5539630068','Julio',NULL,'Romero','Zambrano ','Oriente 23','144'),('5545303785','Aquiles',NULL,'Piña','Olvera ','Oriente 22','166'),('5551901738','Victoria',NULL,'Herrera','Mendoza ','Loma 2','47'),('5552393774','Jose',NULL,'Mendoza','Cordero','Oriente 13','143'),('5552774867','Jordan',' Miguel ','Guitierrez','Lopez ','Oriente 12','192'),('5559849048','Alexis',NULL,'Bautista','Gonzalez ','Morelos','161'),('5561150401','Mitzy',' Ayelen  ','Ramirez ','Ramirez ','Oriente 24','156'),('5563802500','Antonio',NULL,'Rivera','Garcia','Morelo','98'),('5568346061','Virginia',NULL,'Romero','Hernandez ','Loma 2','45'),('5570472184','Jose',' Guadalupe  ','Mendez','Funetes ','Morelos','189'),('5572210522','Lidia ',NULL,'Hernandez','Lopez','Oriente 4','43'),('5573498028','Tania',NULL,'Martinez','Oivares ','Loma 2','45'),('5574721936','Enrique',NULL,'Rivera','Esperon ','Loma 2','79'),('5574873193','Diego',NULL,'Hernandez','Moreno ','Morelos','165'),('5579578291','Fredy',NULL,'Ramirez','Ramirez ','Loma 2','45'),('5583119396','Stephani',NULL,'Fuentes','Gomez ','Loma 2','78'),('5583510568','Jose','Angel ','Arzate','Torres','Oriente 13','152'),('5586249212','Zaid',NULL,'Ramirez','Ramirez ','Morelos','161'),('5586740704','Casandra',NULL,'Gonzalez','Cruz ','Loma 2','89'),('5587133077','Alfredo',NULL,'Ganzalez ','Moreno ','Oriente 20','12'),('5588728726','Fabiola',NULL,'Romero','Olguin ','Oriente 7','186'),('5591098389','Leonardo',NULL,'Saldivar','Gomez ','Loma 2','48'),('5592299421','Sergio',NULL,'Gonzalez','Ramirez ','Oriente 22','166'),('5596842072','Misael',NULL,'Flores','Flores ','Loma 2','45'),('5596984932','Janet',NULL,'Catro','Olvera ','Morelos','149'),('5598276753','Eduardo',NULL,'Pliego','Buen dia','Oriente 31','112');
+INSERT INTO `clientes` VALUES ('5503288379','Eduardo',NULL,'Romero','Torralba ','Oriente 19','176'),('5504711160','Araceli',NULL,'Ramirez','Gonzalez ','Oriente 1','132'),('5526015450','Erika',NULL,'Castro','Dominguez ','Jose Maria Morelos','127'),('5529628501','Julieta',NULL,'Cruz','Cruz ','Oriente 34','23'),('5539630068','Julio',NULL,'Romero','Zambrano ','Oriente 23','144'),('5545303785','Aquiles',NULL,'Piña','Olvera ','Oriente 22','166'),('5551901738','Victoria',NULL,'Herrera','Mendoza ','Loma 2','47'),('5552393774','Jose',NULL,'Mendoza','Cordero','Oriente 13','143'),('5552774867','Jordan',' Miguel ','Guitierrez','Lopez ','Oriente 12','192'),('5555555555','Pera','Manzana','Platano','Higo','Higo x2','2B'),('5559849048','Alexis',NULL,'Bautista','Gonzalez ','Morelos','161'),('5561150401','Mitzy',' Ayelen  ','Ramirez ','Ramirez ','Oriente 24','156'),('5562905793','José','Ángel','Márquez','Martínez','Sur 181','2206'),('5563802500','Antonio',NULL,'Rivera','Garcia','Morelo','98'),('5568346061','Virginia',NULL,'Romero','Hernandez ','Loma 2','45'),('5570472184','Jose',' Guadalupe  ','Mendez','Funetes ','Morelos','189'),('5572210522','Lidia ',NULL,'Hernandez','Lopez','Oriente 4','43'),('5573498028','Tania',NULL,'Martinez','Oivares ','Loma 2','45'),('5574721936','Enrique',NULL,'Rivera','Esperon ','Loma 2','79'),('5574873193','Diego',NULL,'Hernandez','Moreno ','Morelos','165'),('5579578291','Fredy',NULL,'Ramirez','Ramirez ','Loma 2','45'),('5583119396','Stephani',NULL,'Fuentes','Gomez ','Loma 2','78'),('5583510568','Jose','Angel ','Arzate','Torres','Oriente 13','152'),('5586249212','Zaid',NULL,'Ramirez','Ramirez ','Morelos','161'),('5586740704','Casandra',NULL,'Gonzalez','Cruz ','Loma 2','89'),('5587133077','Alfredo',NULL,'Ganzalez ','Moreno ','Oriente 20','12'),('5588728726','Fabiola',NULL,'Romero','Olguin ','Oriente 7','186'),('5591098389','Leonardo',NULL,'Saldivar','Gomez ','Loma 2','48'),('5592299421','Sergio',NULL,'Gonzalez','Ramirez ','Oriente 22','166'),('5596842072','Misael',NULL,'Flores','Flores ','Loma 2','45'),('5596984932','Janet',NULL,'Catro','Olvera ','Morelos','149'),('5598276753','Eduardo',NULL,'Pliego','Buen dia','Oriente 31','112');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,6 +171,7 @@ CREATE TABLE `empleados` (
   `Salario` float NOT NULL,
   `Tipo_Nomina` varchar(30) NOT NULL,
   `Vigente` tinyint(1) NOT NULL,
+  `Tipo` varchar(9) DEFAULT NULL,
   PRIMARY KEY (`Numero_Telefono_PK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -183,7 +182,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES ('5534566354','María','Isabel ','López','Fernández ','maria.lopez@example.com','374659827',2500,'Quincenal',1),('5538455937','Carlos ','Alberto','Ramírez','Castro','carlos.ramirez@example.com','576483726',2500,'Quincenal',1),('5545837302','Sofia','Lucia ','García','Martínez ','sofia.garcia@example.com    ','482759985',2500,'Quincenal',1),('5567890378','Javier  ','Antonio ','Pérez','González ','javier.perez@example.com     ','475869283',2500,'Quincenal',1),('5573582363','Alejandro','Andrés ','Rodríguez ','Gómez ','alejandro.rodriguez@example.com ','384759764',2500,'Quincenal',1),('5583659236','Andrea','Carolina','Martínez','Sánchez','andrea.martinez@example.com  ','647580285',2500,'Quincenal',1),('5589465345','Laura','Valentina ','Morales','Pérez','laura.morales@example.com','586958375',2500,'Quincenal',1);
+INSERT INTO `empleados` VALUES ('1111111111','Levi','José','No tiene','Hachiko','levi@gmail.com','0000000000',10,'Mensual',1,'Jefe'),('5534566354','María','Isabel ','López','Fernández ','maria.lopez@example.com','374659827',2500,'Quincenal',1,NULL),('5538455937','Carlos ','Alberto','Ramírez','Castro','carlos.ramirez@example.com','576483726',2500,'Quincenal',1,NULL),('5545837302','Sofia','Lucia ','García','Martínez ','sofia.garcia@example.com    ','482759985',2500,'Quincenal',1,NULL),('5555555555','Andres','Manuel','López','Obrador','hola@gmail.com','85170236666',3000,'Quincenal',1,'Empleado'),('5562905793','José','Ángel','Márquez','Martínez','hola@gmail.com','2021600056',20000,'Quincenal',1,NULL),('5567890378','Javier  ','Antonio ','Pérez','González ','javier.perez@example.com     ','475869283',2500,'Quincenal',1,NULL),('5573582363','Alejandro','Andrés ','Rodríguez ','Gómez ','alejandro.rodriguez@example.com ','384759764',2500,'Quincenal',1,NULL),('5583659236','Andrea','Carolina','Martínez','Sánchez','andrea.martinez@example.com  ','647580285',2500,'Quincenal',1,NULL),('5589465345','Laura','Valentina ','Morales','Pérez','laura.morales@example.com','586958375',2500,'Quincenal',1,NULL);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -452,6 +451,7 @@ CREATE TABLE `productos` (
   `UM` varchar(20) NOT NULL,
   `Descripcion_Producto` varchar(200) NOT NULL,
   `Precio_Unitario` float NOT NULL,
+  `Stock` int DEFAULT NULL,
   PRIMARY KEY (`Clave_Producto_PK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -462,7 +462,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('CPT-03','Carton para corbata',100,'Piezas','Caja',92.8),('HAN-01A','Gancho strut dorado o blanco',500,'Piezas','Caja',1000),('HAN-06','Gancho estandar azul cal 12,5',500,'Piezas','Caja',645),('KC-02','Jabon liquido para ropa blanca',4,'Litros','Garrafon ',60.7),('KC-04','jabon liquido para ropa obscura',4,'Litros','Garrafon ',60.7),('KC-09','jabon liquido aviva el color',4,'Litros','Garrafon ',337.63),('KC-12','Predesmanchado para cuello y puños',4,'Litros','Garrafon ',59.6),('KC-16','suavizante con agradable aroma',4,'Litros','Garrafon ',90.6),('KC-23','suavizante de telas',3,'Litros','Garrafon ',57.9),('KC-25','ultra klin',3,'Litros','Garrafon ',107.8),('KC-28','pino kilin',3,'Litros','Garafon',49.28),('KC-30','Predesmanchador ',3,'Litros','Garrafon ',59.6),('P-10','Rollo para marcar',10,'Metros','Caja',39.44),('T-B30-006','Paquete caballete engomado importado',500,'Piezas','Caja',255.2),('V-14','Rollo bolsa para vestido largo ',25,'Kilos ','Rollo ',568.04),('V-26','Rollo bolsa para saco ',25,'Kilos','Rollo ',568.04),('V-33','Bolsa para corbata',100,'Piezas','Rollo',92.8);
+INSERT INTO `productos` VALUES ('','Zote',20,'Piezas','Lava chido',20.5,NULL),('9CM211','Roma',24,'Kilos','Lava chido',45.5,NULL),('CPT-03','Carton para corbata',100,'Piezas','Caja',92.8,NULL),('hahahsg','Suavisante',200,'Litros','Huele chido ',45.43,20),('HAN-01A','Gancho strut dorado o blanco',500,'Piezas','Caja',1000,NULL),('HAN-06','Gancho estandar azul cal 12,5',500,'Piezas','Caja',645,NULL),('KC-02','Jabon liquido para ropa blanca',4,'Litros','Garrafon ',60.7,NULL),('KC-04','jabon liquido para ropa obscura',4,'Litros','Garrafon ',60.7,NULL),('KC-09','jabon liquido aviva el color',4,'Litros','Garrafon ',337.63,NULL),('KC-12','Predesmanchado para cuello y puños',4,'Litros','Garrafon ',59.6,NULL),('KC-16','suavizante con agradable aroma',4,'Litros','Garrafon ',90.6,NULL),('KC-23','suavizante de telas',3,'Litros','Garrafon ',57.9,NULL),('KC-25','ultra klin',3,'Litros','Garrafon ',107.8,NULL),('KC-28','pino kilin',3,'Litros','Garafon',49.28,NULL),('KC-30','Predesmanchador ',3,'Litros','Garrafon ',59.6,NULL),('P-10','Rollo para marcar',10,'Metros','Caja',39.44,NULL),('T-B30-006','Paquete caballete engomado importado',500,'Piezas','Caja',255.2,NULL),('V-14','Rollo bolsa para vestido largo ',25,'Kilos ','Rollo ',568.04,NULL),('V-26','Rollo bolsa para saco ',25,'Kilos','Rollo ',568.04,NULL),('V-33','Bolsa para corbata',100,'Piezas','Rollo',92.8,NULL);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +496,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES ('Velasquez','57460963','27333631','distribuidoravelazquez@hotmail.com','Efectivo','Accesorios para tintorerias y lavanderias','Jose Ma. Pino Suarez ','8-a','San Juan Ixhuatepec','54180','Tlanepantla','Estado de Mexico');
+INSERT INTO `proveedores` VALUES ('','5562905793','5559352312','jocelyndeshuef@gmail.com','','Blancos','Pera','2001','Ramos Millán','08000','Iztacalco','Activo'),('Mr Musculo','5562905793','5559352312','patata@gmail.com','Transferencia','Papas','Higo x2','2001','asdfghjklñ','08000','Iztapalapa','Activo'),('Pato cuack','5562905793','5559352312','patocuack@gmail.com','Efectivo','Pozole','Pera','2001','Ramos Millán','1234','Iztacalco','Activo'),('Velasquez','57460963','27333631','distribuidoravelazquez@hotmail.com','Efectivo','Accesorios para tintorerias y lavanderias','Jose Ma. Pino Suarez ','8-a','San Juan Ixhuatepec','54180','Tlanepantla','Estado de Mexico');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,4 +539,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-11  3:03:09
+-- Dump completed on 2024-05-15 15:38:02
