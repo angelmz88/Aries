@@ -60,7 +60,6 @@ include ("empleados/../../../../php/final_sesion.php");
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
-    <script src="../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="../inventario/inventario.php" class="btn_salir">Regresar</a>
@@ -74,12 +73,13 @@ include ("empleados/../../../../php/final_sesion.php");
     $um = $_POST['um'];
     $descripcionProducto = $_POST['desc'];
     $precioUnitario = $_POST['precio'];
+    $stock = $_POST['stock'];
 
     include ("inventario/../../../../php/bd.php");
 
     // Consulta SQL de inserción
-    $sql = "INSERT INTO productos (Clave_Producto_PK, Nombre_Producto, Piezas, UM, Descripcion_Producto, Precio_Unitario) 
-VALUES ('$claveProducto', '$nombreProducto', $piezas, '$um', '$descripcionProducto', $precioUnitario)";
+    $sql = "INSERT INTO productos (Clave_Producto_PK, Nombre_Producto, Piezas, UM, Descripcion_Producto, Precio_Unitario, Stock) 
+VALUES ('$claveProducto', '$nombreProducto', $piezas, '$um', '$descripcionProducto', $precioUnitario, $stock)";
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
       echo '<script>';

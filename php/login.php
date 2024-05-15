@@ -13,14 +13,19 @@ $result = $conn->query($sql);
 // Verificar si el usuario ha enviado el formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
+        $validacion = "SELECT Tipo FROM empleados where Numero_Seguridad_Social = '$username'";
+        $retorno = $conn->query($validacion);
+        $row = $retorno->fetch_assoc();
+        $tipo = (string) $row['Tipo'];
         // El usuario ha iniciado sesión correctamente
         $_SESSION["username"] = $username; // Establecer una variable de sesión para indicar que el usuario ha iniciado sesión
         echo "Inicio de sesión exitoso. ¡Bienvenido!";
+        echo $tipo;
         // Redirigir a otra página
 
-        if ($username == '374659827') {
+        if ($tipo == 'Jefe') {
             header("Location: ../Pages/jefe.php");
-        } else {
+        } elseif ($tipo == 'Empleado') {
             header("Location: ../Pages/empleado.php");
         }
         exit(); // Asegúrate de salir del script después de la redirección

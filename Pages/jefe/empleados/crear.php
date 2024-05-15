@@ -42,6 +42,13 @@ include ("empleados/../../../../php/final_sesion.php");
         <label for="second">Apellido materno</label>
       </div>
       <div class="form-group">
+        <select class="form-control" id="tipo" name="tipo" required>
+          <option value="Empleado">Empleado</option>
+          <option value="Jefe">Jefe</option>
+        </select>
+        <label for="tipo">Tipo de empleado</label>
+      </div>
+      <div class="form-group">
         <input type="number" id="nss" name="nss" class="form-control" required />
         <label for="nss">Número de seguridad social</label>
       </div>
@@ -50,19 +57,19 @@ include ("empleados/../../../../php/final_sesion.php");
         <label for="salary">Salario</label>
       </div>
       <div class="form-group">
+        <select class="form-control" id="nomina" name="nomina" required>
+          <option value="Quincenal">Quincenal</option>
+          <option value="Mensual">Mensual</option>
+        </select>
+        <label for="nomina">Tipo de nomina</label>
+      </div>
+      <div class="form-group">
         <input type="tel" id="tel" name="tel" class="form-control" required />
         <label for="tel">Telefono</label>
       </div>
       <div class="form-group">
         <input type="email" id="mail" name="mail" class="form-control" required />
         <label for="mail">Correo electrónico</label>
-      </div>
-      <div class="form-group">
-        <select class="form-control" id="nomina" name="nomina" required>
-          <option value="Quincenal">Quincenal</option>
-          <option value="Mensual">Mensual</option>
-        </select>
-        <label for="nomina">Tipo de nomina</label>
       </div>
       <div class="form-group">
         <select class="form-control" id="estatus" name="estatus" required>
@@ -91,12 +98,13 @@ include ("empleados/../../../../php/final_sesion.php");
     $salario = $_POST['salary'];
     $nomina = $_POST['nomina'];
     $estatus = $_POST['estatus'];
+    $tipo = $_POST['tipo'];
 
     include ("empleados/../../../../php/bd.php");
 
     // Consulta SQL de inserción
-    $sql = "INSERT INTO empleados (Numero_Telefono_PK, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Correo_Electronico, Numero_Seguridad_Social, Salario, Tipo_Nomina, Vigente) 
-VALUES ('$numTelPk', '$primer_Nombre', '$segundo_Nombre', '$primer_Apellido', '$segundo_Apellido', '$correo_Electronico', '$nss', $salario, '$nomina', $estatus)";
+    $sql = "INSERT INTO empleados (Numero_Telefono_PK, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Correo_Electronico, Numero_Seguridad_Social, Salario, Tipo_Nomina, Vigente, Tipo) 
+VALUES ('$numTelPk', '$primer_Nombre', '$segundo_Nombre', '$primer_Apellido', '$segundo_Apellido', '$correo_Electronico', '$nss', $salario, '$nomina', $estatus, '$tipo')";
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
       echo '<script>';

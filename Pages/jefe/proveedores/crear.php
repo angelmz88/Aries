@@ -81,7 +81,6 @@ include ("proveedores/../../../../php/final_sesion.php");
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
-    <!-- <script src="../../JS/registro-nota.js"></script> -->
   </section>
   <footer class="footer">
     <a href="../proveedores/proveedores.php" class="btn_salir">Regresar</a>
