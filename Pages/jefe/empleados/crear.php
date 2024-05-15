@@ -104,7 +104,7 @@ VALUES ('$numTelPk', '$primer_Nombre', '$segundo_Nombre', '$primer_Apellido', '$
       // echo 'window.location.href = "../index.php";'; // Redirige a otra_pagina.php después de que el usuario haga clic en "Aceptar"
       echo '</script>';
     } else {
-      echo "Error al insertar datos: " . $conn->error;
+      // echo "Error al insertar datos: " . $conn->error;
     }
   }
   ?>
