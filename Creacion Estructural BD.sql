@@ -162,7 +162,7 @@ CREATE TABLE Tenido_Reparacion
 	Folio_Nota_PK_FK INT NOT NULL,
     Cantidad_Prendas_PK INT NOT NULL,
     Tipo_Servicio VARCHAR(50) NOT NULL,
-    Telefono_Colaborador_fk VARCHAR(10) NOT NULL, 
+    Telefono_Colaborador_FK VARCHAR(10) NOT NULL, 
     Estatus Boolean NOT NULL,
     CONSTRAINT Tenido_Reparacion PRIMARY KEY (Folio_Nota_PK_FK, Cantidad_Prendas_PK),
     CONSTRAINT Folio_Nota_Tenido_Reparacion FOREIGN KEY(Folio_Nota_PK_FK) REFERENCES Notas(Folio_Nota_PK),
