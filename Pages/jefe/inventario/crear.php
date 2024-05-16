@@ -24,7 +24,7 @@ include ("empleados/../../../../php/final_sesion.php");
     </div>
   </section>
   <section class="options">
-    <form action="" id="form-register" method="post" class="form">
+    <form action="crear.php" id="form-register" method="post" class="form">
       <div class="form-group">
         <input type="text" class="form-control" id="clave" name="clave" required />
         <label for="clave">Clave del Producto</label>

@@ -1,5 +1,11 @@
 <?php
 include ("pages/../../php/sesion.php");
+include ("pages/../../php/bd.php");
+$username = $_SESSION["username"];
+$validacion = "SELECT Primer_Nombre FROM empleados where Numero_Seguridad_Social = '$username'";
+$retorno = $conn->query($validacion);
+$row = $retorno->fetch_assoc();
+$nombre = (string) $row['Primer_Nombre'];
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +35,7 @@ include ("pages/../../php/sesion.php");
   </header>
   <section class="hero">
     <div class="hero-cover">
-      <h1>¡Bienvenido!</h1>
+      <h1>¡Bienvenido <?php echo "$nombre"; ?>!</h1>
       <h2>¿Qué deseas consultar hoy?</h2>
     </div>
   </section>
