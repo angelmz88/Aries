@@ -57,7 +57,7 @@ $productos = obtenerProductos();
           data: { term: searchTerm },
           dataType: 'json',
           success: function (data) {
-            var tableContent = '<table border="1"><tr><th>Clave</th><th>Nombre</th><th>Piezas</th><th>UM</th><th>Descripción</th><th>Precio unitario</th><th>Alerta de stock</th><th>Acciones</th></tr>';
+            var tableContent = '<table><tr><th>Clave</th><th>Nombre</th><th>Piezas</th><th>UM</th><th>Descripción</th><th>Precio unitario</th><th>Alerta de stock</th><th>Acciones</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, producto) {
                 tableContent += '<tr><td>' + producto.Clave_Producto_PK + '</td><td>' + producto.Nombre_Producto + '</td><td>' + producto.Piezas + '</td><td>' + producto.UM + '</td><td>' + producto.Descripcion_Producto + '</td><td>' + producto.Precio_Unitario + '</td><td>' + producto.Stock + '</td><td><a href="actualizar.php?Clave_Producto_PK=' + producto.Clave_Producto_PK + '">Editar</a></td></tr>';
@@ -91,9 +91,9 @@ $productos = obtenerProductos();
       <input type="text" id="search" placeholder="Buscar producto..." />
     </div>
   </section>
-  <section id="resultados">
+  <section id="resultados" class="resultados">
     <!-- Mostrar todos los productos por defecto -->
-    <table border="1">
+    <table class="table">
       <tr>
         <th>Clave</th>
         <th>Nombre</th>
