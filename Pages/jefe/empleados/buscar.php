@@ -10,7 +10,7 @@ function obtenerEmpleados($term = '')
   if ($term != '') {
     $sql .= " WHERE Numero_Telefono_PK LIKE '%$term%' OR Primer_Nombre LIKE '%$term%' OR Segundo_Nombre LIKE '%$term%' 
     OR Primer_Apellido LIKE '%$term%' OR Segundo_Apellido LIKE '%$term%' OR Correo_Electronico LIKE '%$term%' OR Numero_Seguridad_Social 
-    LIKE '%$term%' OR Salario LIKE '%$term%' OR Tipo_Nomina LIKE '%$term%' OR Vigente LIKE '%$term%' OR Tipo LIKE '%$term'";
+    LIKE '%$term%' OR Salario LIKE '%$term%' OR Tipo_Nomina LIKE '%$term%' OR Vigente LIKE '%$term%' OR Tipo LIKE '%$term%'";
   }
   $result = $conn->query($sql);
 
