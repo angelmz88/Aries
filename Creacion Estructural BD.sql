@@ -27,6 +27,7 @@ CREATE TABLE Empleados
     Numero_Seguridad_Social VARCHAR(11) NOT NULL,
     Salario FLOAT NOT NULL,
     Tipo_Nomina VARCHAR(30) NOT NULL,
+    Tipo_Empleado VARCHAR(10) NOT NULL,
     Vigente BOOLEAN NOT NULL, 
     CONSTRAINT Empleados PRIMARY KEY(Numero_Telefono_PK)
 );
@@ -153,6 +154,7 @@ CREATE TABLE Colaboradores
     Segundo_Nombre VARCHAR(50) NULL,
     Primer_Apellido VARCHAR(50) NOT NULL,
     Segundo_Apellido VARCHAR(50) NOT NULL,
+    Vigente BOOLEAN NOT NULL,
     CONSTRAINT Colaboradores PRIMARY KEY(Numero_Telefono_PK)
 );
 
@@ -178,6 +180,7 @@ CREATE TABLE Productos
     UM VARCHAR(20) NOT NULL,
     Descripcion_Producto VARCHAR(200) NOT NULL, 
     Precio_Unitario FLOAT NOT NULL,
+    Vigente BOOLEAN NOT NULL,
     CONSTRAINT Productos PRIMARY KEY(Clave_Producto_PK)
 );
 
@@ -207,6 +210,7 @@ CREATE TABLE Proveedores
     Codigo_Postal VARCHAR(5) NOT NULL,
     Municipio VARCHAR(50) NOT NULL,
     Estado VARCHAR(50) NOT NULL,
+    Vigente BOOLEAN NOT NULL,
     CONSTRAINT Proveedores priMARY KEY(Nombre_Distribuidora_PK)
 );
 
