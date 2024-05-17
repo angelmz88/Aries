@@ -73,10 +73,7 @@ include ("proveedores/../../../../php/final_sesion.php");
         <label for="mun">Alcaldía/Municipio</label>
       </div>
       <div class="form-group">
-        <select class="form-control" id="estatus" name="estatus" required>
-          <option value="Activo">Activo</option>
-          <option value="Inactivo">Inactivo</option>
-        </select>
+        <input type="text" class="form-control" id="estatus" name="estatus" required>
         <label for="estatus">Estatus</label>
       </div>
       <button type="submit" class="submit">Guardar</button>
