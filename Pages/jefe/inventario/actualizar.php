@@ -51,6 +51,8 @@ if (isset($_GET['Clave_Producto_PK'])) {
       <div class="form-group">
         <input type="text" class="form-control" id="clave" name="clave" disabled
           value="<?php echo $producto['Clave_Producto_PK']; ?>" />
+        <input type="hidden" class="form-control" id="clave" name="clave"
+          value="<?php echo $producto['Clave_Producto_PK']; ?>" />
         <label for="clave">Clave del Producto</label>
       </div>
       <input type="hidden" name="clave" value="<?php echo $producto['Clave_Producto_PK']; ?>" />

@@ -61,7 +61,7 @@ $clientes = obtenerClientes();
           data: { term: searchTerm },
           dataType: 'json',
           success: function (data) {
-            var tableContent = '<table><tr><th>Telefono</th><th>Primer Nombre</th><th>Segundo Nombre</th><th>Primer Apellido</th><th>Segundo Apellido</th><th>Calle</th><th>Numero Exterior</th></tr>';
+            var tableContent = '<table><tr><th>Telefono</th><th>Primer Nombre</th><th>Segundo Nombre</th><th>Primer Apellido</th><th>Segundo Apellido</th><th>Calle</th><th>Numero Exterior</th><th>Acciones</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, cliente) {
                 tableContent += '<tr><td>' + cliente.Numero_Telefono_PK + '</td><td>' + cliente.Primer_Nombre +

@@ -1,5 +1,28 @@
 <?php
-include ("clientes/../../../php/deep_sesion.php");
+include ("empleados/../../../php/deep_sesion.php");
+include ("empleados/../../../php/bd.php");
+// Verificar si se ha pasado un ID en la URL
+if (isset($_GET['Clave_Producto_PK'])) {
+  $id = $_GET['Clave_Producto_PK'];
+  $id_string = strval($id);
+  // Preparar la consulta para obtener los datos del registro
+  $sql = "SELECT * FROM productos WHERE Clave_Producto_PK = '$id_string'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // Obtener los datos del registro
+    $producto = $result->fetch_assoc();
+  } else {
+    echo "Registro no encontrado";
+    exit();
+  }
+
+  $conn->close();
+} else {
+  echo "ID no proporcionado";
+  exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,31 +43,63 @@ include ("clientes/../../../php/deep_sesion.php");
   </header>
   <section class="hero">
     <div class="hero-cover">
-      <h1>ACTUALIZACIÓN DE INVENTARIO</h1>
+      <h1>EDITAR PRODUCTO</h1>
     </div>
   </section>
   <section class="options">
-    <form action="" id="form-register" method="post" class="form">
+    <form action="editar.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="text" class="form-control" required />
-        <label for="nom-clientes">Clave del producto</label>
+        <input type="text" class="form-control" id="clave" name="clave" disabled
+          value="<?php echo $producto['Clave_Producto_PK']; ?>" />
+        <input type="hidden" class="form-control" id="clave" name="clave"
+          value="<?php echo $producto['Clave_Producto_PK']; ?>" />
+        <label for="clave">Clave del Producto</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" />
-        <label for="nom-clientes">Nombre del producto</label>
+        <input type="text" class="form-control" id="nom" name="nom" disabled
+          value="<?php echo $producto['Nombre_Producto']; ?>" />
+        <label for="nom">Nombre del Producto</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" required />
-        <label for="piezas">Piezas</label>
+        <input type="number" class="form-control" id="num" name="num" value="<?php echo $producto['Piezas']; ?>" />
+        <label for="num">Número de piezas</label>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="um" name="um" disabled>
+          <option value="Piezas" <?php if ($producto['UM'] == 'Piezas')
+            echo 'selected'; ?>>Piezas</option>
+          <option value="Metros" <?php if ($producto['UM'] == 'Metros')
+            echo 'selected'; ?>>Metros</option>
+          <option value="Litros" <?php if ($producto['UM'] == 'Litros')
+            echo 'selected'; ?>>Litros</option>
+          <option value="Kilos" <?php if ($producto['UM'] == 'Kilos')
+            echo 'selected'; ?>>Kilos</option>
+        </select>
+        <label for="um">Unidad de medida</label>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="desc" name="desc"
+          value="<?php echo $producto['Descripcion_Producto']; ?>" disabled />
+        <label for="desc">Descripción</label>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" id="precio" name="precio" step="0.01"
+          value="<?php echo $producto['Precio_Unitario']; ?>" disabled />
+        <label for="precio">Precio unitario</label>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" id="stock" name="stock" value="<?php echo $producto['Stock']; ?>"
+          disabled />
+        <label for="stock">Stock minimo para las alertas</label>
       </div>
       <button type="submit" class="submit">Actualizar</button>
     </form>
-    <script src="../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
-    <a href="../cliente.php" class="btn_salir">Regresar</a>
+    <a href="consultar.php" class="btn_salir">Regresar</a>
     <a href="inventario/../../../php/salir.php" class="btn_salir">Salir</a>
   </footer>
+
 </body>
 
 </html>
