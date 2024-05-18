@@ -78,6 +78,9 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
           <option value="Transferencia" <?php if ($proveedor['Metodo_Pago'] == 'Transferencia')
             echo 'selected'; ?>>
             Transferencia </option>
+          <option value="Tarjeta" <?php if ($proveedor['Metodo_Pago'] == 'Tarjeta')
+            echo 'selected'; ?>>
+            Tarjeta </option>
         </select>
         <label for="pago">Método de pago</label>
       </div>

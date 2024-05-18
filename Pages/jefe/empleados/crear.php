@@ -74,7 +74,7 @@ include ("empleados/../../../../php/final_sesion.php");
       <div class="form-group">
         <select class="form-control" id="estatus" name="estatus" required>
           <option value="1">Activo</option>
-          <option value="2">Inactivo</option>
+          <option value="0">Inactivo</option>
         </select>
         <label for="estatus">Estatus</label>
       </div>

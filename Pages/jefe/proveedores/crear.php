@@ -45,6 +45,7 @@ include ("proveedores/../../../../php/final_sesion.php");
         <select class="form-control" id="pago" name="pago" required>
           <option value="Efectivo">Efectivo</option>
           <option value="Transferencia">Transferencia</option>
+          <option value="Tarjeta">Tarjeta</option>
         </select>
         <label for="pago">Método de pago</label>
       </div>
