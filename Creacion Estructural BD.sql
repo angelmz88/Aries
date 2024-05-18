@@ -180,6 +180,7 @@ CREATE TABLE Productos
     UM VARCHAR(20) NOT NULL,
     Descripcion_Producto VARCHAR(200) NOT NULL, 
     Precio_Unitario FLOAT NOT NULL,
+    Stock_Minimo INT NOT NULL,
     Vigente BOOLEAN NOT NULL,
     CONSTRAINT Productos PRIMARY KEY(Clave_Producto_PK)
 );
