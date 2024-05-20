@@ -8,7 +8,9 @@ function obtenerProductos($term = '')
   global $conn;
   $sql = "SELECT * FROM productos";
   if ($term != '') {
-    $sql .= " WHERE Clave_Producto_PK LIKE '%$term%' OR Nombre_Producto LIKE '%$term%' OR Piezas LIKE '%$term%' OR UM LIKE '%$term%' OR Descripcion_Producto LIKE '%$term%' OR Precio_Unitario LIKE '%$term%' OR Stock LIKE '%$term%'";
+    $sql .= " WHERE Clave_Producto_PK LIKE '%$term%' OR Nombre_Producto LIKE '%$term%' OR Piezas LIKE '%$term%' 
+    OR UM LIKE '%$term%' OR Descripcion_Producto LIKE '%$term%' OR Precio_Unitario LIKE '%$term%' 
+    OR Stock_Minimo LIKE '%$term%'";
   }
   $result = $conn->query($sql);
 
@@ -116,7 +118,7 @@ $productos = obtenerProductos();
             <td><?php echo $producto['UM']; ?></td>
             <td><?php echo $producto['Descripcion_Producto']; ?></td>
             <td><?php echo $producto['Precio_Unitario']; ?></td>
-            <td><?php echo $producto['Stock']; ?></td>
+            <td><?php echo $producto['Stock_Minimo']; ?></td>
             <td><a href="actualizar.php?Clave_Producto_PK=<?php echo $producto['Clave_Producto_PK']; ?>">Editar</a></td>
           </tr>
         <?php endforeach; ?>

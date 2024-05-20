@@ -59,7 +59,26 @@ include ("empleados/../../../../php/final_sesion.php");
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
-    <script src="../../JS/registro-nota.js"></script>
+    <script>
+      document.getElementById('add-prenda').addEventListener('click', function () {
+        const container = document.getElementById('prendas-container');
+        const newPrenda = container.children[0].cloneNode(true);
+        newPrenda.querySelector('input[name="numero-prenda[]"]').value = "";
+        newPrenda.querySelector('input[name="color-prenda[]"]').value = "";
+        container.appendChild(newPrenda);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('remove-prenda')) {
+          const prenda = e.target.closest('.prenda');
+          if (document.querySelectorAll('.prenda').length > 1) {
+            prenda.remove();
+          } else {
+            alert('Debe haber al menos una prenda.');
+          }
+        }
+      });
+    </script>
   </section>
   <footer class="footer">
     <a href="../inventario/inventario.php" class="btn_salir">Regresar</a>
