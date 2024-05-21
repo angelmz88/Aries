@@ -33,7 +33,7 @@ include ("empleados/../../../../php/bd.php");
           $result = $conn->query($sql);
 
           while ($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row['Nombre_Distribuidora_PK'] . "'>" . $row['Nombre_Distribuidora_PK'] . "</option>";
+            echo "<option value='" . trim($row['Nombre_Distribuidora_PK']) . "'>" . trim($row['Nombre_Distribuidora_PK']) . "</option>";
           }
           ?>
         </select>
@@ -98,8 +98,8 @@ include ("empleados/../../../../php/bd.php");
 include ("inventario/../../../../php/bd.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre_distribuidora = $_POST['proveedor'][0]; // Asumiendo que solo hay un proveedor
-  $productos = isset($_POST['producto']) ? $_POST['producto'] : [];
+  $nombre_distribuidora = trim($_POST['proveedor'][0]); // Asumiendo que solo hay un proveedor
+  $productos = isset($_POST['producto']) ? array_map('trim', $_POST['producto']) : [];
   $numero_piezas = isset($_POST['num-piezas']) ? $_POST['num-piezas'] : [];
   $provisional = 1;
   $fecha_actual = date('Y-m-d');
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($result_precio->num_rows > 0) {
         $row_precio = $result_precio->fetch_assoc();
         $precio_unitario = (int) $row_precio['Precio_Unitario'];
-        $id_prenda = (int) $row_precio['Clave_Producto_PK'];
+        $id_prenda = trim($row_precio['Clave_Producto_PK']); // Tratar la clave del producto como string
 
         // Depuración: imprimir el id del producto
         echo "Insertando producto con ID: " . $id_prenda . " y precio unitario: " . $precio_unitario . "<br>";
@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql_prenda = "INSERT INTO detalles_pedidos (Numero_Pedido_PK_FK, Identificador_Producto_PK_FK, Cantidad_Producto) 
                        VALUES (?, ?, ?)";
         $stmt_prenda = $conn->prepare($sql_prenda);
-        $stmt_prenda->bind_param("iii", $nota_id, $id_prenda, $numero_piezas[$i]);
+        $stmt_prenda->bind_param("isi", $nota_id, $id_prenda, $numero_piezas[$i]); // Usar "isi" para tratar la clave como string
 
         if (!$stmt_prenda->execute()) {
           throw new Exception("Error al insertar producto: " . $stmt_prenda->error);
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->commit(); // Confirmar transacción
     echo '<script>';
     echo 'alert("Nota y productos registrados correctamente.");';
-    echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
+    // echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
     echo '</script>';
   } catch (Exception $e) {
     $conn->rollback(); // Revertir transacción en caso de error
@@ -181,9 +181,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
-
-
-
-
 
 </html>
