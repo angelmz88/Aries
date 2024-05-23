@@ -7,13 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcionProducto = $_POST['desc'];
     $precioUnitario = $_POST['precio'];
     $stock = $_POST['stock'];
+    $vigente = $_POST['vigente'];
 
     include ("inventario/../../../../php/bd.php");
 
     // Consulta SQL de actualización
     $sql = "UPDATE productos SET Nombre_Producto = '$nombreProducto', 
     Piezas = $piezas, UM = '$um', Descripcion_Producto = '$descripcionProducto', Precio_Unitario = $precioUnitario, 
-    Stock = $stock WHERE Clave_Producto_PK = '$claveProducto'";
+    Stock_Minimo = $stock, Vigente = $vigente WHERE Clave_Producto_PK = '$claveProducto'";
 
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {

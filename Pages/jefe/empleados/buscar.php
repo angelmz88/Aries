@@ -10,7 +10,7 @@ function obtenerEmpleados($term = '')
   if ($term != '') {
     $sql .= " WHERE Numero_Telefono_PK LIKE '%$term%' OR Primer_Nombre LIKE '%$term%' OR Segundo_Nombre LIKE '%$term%' 
     OR Primer_Apellido LIKE '%$term%' OR Segundo_Apellido LIKE '%$term%' OR Correo_Electronico LIKE '%$term%' OR Numero_Seguridad_Social 
-    LIKE '%$term%' OR Salario LIKE '%$term%' OR Tipo_Nomina LIKE '%$term%' OR Vigente LIKE '%$term%' OR Tipo LIKE '%$term%'";
+    LIKE '%$term%' OR Salario LIKE '%$term%' OR Tipo_Nomina LIKE '%$term%' OR Vigente LIKE '%$term%' OR Tipo_Empleado LIKE '%$term%'";
   }
   $result = $conn->query($sql);
 
@@ -62,11 +62,12 @@ $empleados = obtenerEmpleados();
             var tableContent = '<table><tr><th>Telefono</th><th>Primer nombre</th><th>Segundo nombre</th><th>Primer apellido</th><th>Segundo apellido</th><th>Correo electrónico</th><th>Número de seguro social</th><th>Salario</th><th>Nomina</th><th>Estatus</th><th>Tipo</th><th>Acciones</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, empleado) {
+                let vigenteText = empleado.Vigente == 1 ? "Si" : "No";
                 tableContent += '<tr><td>' + empleado.Numero_Telefono_PK + '</td><td>' + empleado.Primer_Nombre +
                   '</td><td>' + empleado.Segundo_Nombre + '</td><td>' + empleado.Primer_Apellido +
                   '</td><td>' + empleado.Segundo_Apellido + '</td><td>' + empleado.Correo_Electronico +
                   '</td><td>' + empleado.Numero_Seguridad_Social + '</td><td>' + empleado.Salario +
-                  '</td><td>' + empleado.Tipo_Nomina + '</td><td>' + empleado.Vigente + '</td><td>' + empleado.Tipo +
+                  '</td><td>' + empleado.Tipo_Nomina + '</td><td>' + vigenteText + '</td><td>' + empleado.Tipo_Empleado +
                   '</td><td><a href="actualizar.php?Numero_Telefono_PK=' + empleado.Numero_Telefono_PK + '">Editar</a></td></tr>';
               });
             } else {
@@ -124,8 +125,12 @@ $empleados = obtenerEmpleados();
           <td><?php echo $empleado["Numero_Seguridad_Social"]; ?></td>
           <td><?php echo $empleado["Salario"]; ?></td>
           <td><?php echo $empleado["Tipo_Nomina"]; ?></td>
-          <td><?php echo $empleado["Vigente"]; ?></td>
-          <td><?php echo $empleado["Tipo"]; ?></td>
+          <td><?php if ($empleado['Vigente'] == 1) {
+            echo "Activo";
+          } else {
+            echo "Inactivo";
+          } ?></td>
+          <td><?php echo $empleado["Tipo_Empleado"]; ?></td>
           <td><a href="actualizar.php?Numero_Telefono_PK=<?php echo $empleado['Numero_Telefono_PK']; ?>">Editar</a></td>
         </tr>
       <?php endforeach; ?>

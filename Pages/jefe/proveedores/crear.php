@@ -75,7 +75,14 @@ include ("proveedores/../../../../php/final_sesion.php");
       </div>
       <div class="form-group">
         <input type="text" class="form-control" id="estatus" name="estatus" required>
-        <label for="estatus">Estatus</label>
+        <label for="estatus">Estado</label>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="vigente" name="vigente" required>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+        <label for="vigente">Vigente</label>
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
@@ -87,7 +94,7 @@ include ("proveedores/../../../../php/final_sesion.php");
   <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que todos los campos requeridos están presentes en $_POST
-    $required_fields = ['nombre', 'telPrincipal', 'telSecundario', 'email', 'pago', 'catalogo', 'calle', 'num', 'colonia', 'cp', 'mun', 'estatus'];
+    $required_fields = ['nombre', 'telPrincipal', 'telSecundario', 'email', 'pago', 'catalogo', 'calle', 'num', 'colonia', 'cp', 'mun', 'estatus', 'vigente'];
     foreach ($required_fields as $field) {
       if (!isset($_POST[$field])) {
         echo "Error: Campo '$field' no está definido en el formulario.";
@@ -108,13 +115,14 @@ include ("proveedores/../../../../php/final_sesion.php");
     $codigoPostal = $_POST['cp'];
     $municipio = $_POST['mun'];
     $estado = $_POST['estatus'];
+    $vigente = $_POST['vigente'];
 
     // Incluir la conexión a la base de datos
     include ("inventario/../../../../php/bd.php");
 
     // Consulta SQL de inserción
-    $sql = "INSERT INTO proveedores (Nombre_Distribuidora_PK, Telefono_Principal, Telefono_Alterno, Correo_Electronico, Metodo_Pago, Catalogo_Producto, Calle, Numero_Exterior, Colonia, Codigo_Postal, Municipio, Estado) 
-    VALUES ('$nom', '$telefono', '$telefonoAlterno', '$email', '$mPago', '$catalogo', '$calle', '$numExterior', '$colonia', '$codigoPostal', '$municipio', '$estado')";
+    $sql = "INSERT INTO proveedores (Nombre_Distribuidora_PK, Telefono_Principal, Telefono_Alterno, Correo_Electronico, Metodo_Pago, Catalogo_Producto, Calle, Numero_Exterior, Colonia, Codigo_Postal, Municipio, Estado, Vigente) 
+    VALUES ('$nom', '$telefono', '$telefonoAlterno', '$email', '$mPago', '$catalogo', '$calle', '$numExterior', '$colonia', '$codigoPostal', '$municipio', '$estado', $vigente)";
 
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {

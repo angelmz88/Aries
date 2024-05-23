@@ -58,6 +58,13 @@ include ("empleados/../../../../php/final_sesion.php");
         <input type="number" class="form-control" id="stock" name="stock" required />
         <label for="stock">Stock minimo para las alertas</label>
       </div>
+      <div class="form-group">
+        <select class="form-control" id="vigente" name="vigente" required>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+        <label for="vigente">Vigente</label>
+      </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
   </section>
@@ -74,12 +81,13 @@ include ("empleados/../../../../php/final_sesion.php");
     $descripcionProducto = $_POST['desc'];
     $precioUnitario = $_POST['precio'];
     $stock = $_POST['stock'];
+    $vigente = $_POST['vigente'];
 
     include ("inventario/../../../../php/bd.php");
 
     // Consulta SQL de inserción
-    $sql = "INSERT INTO productos (Clave_Producto_PK, Nombre_Producto, Piezas, UM, Descripcion_Producto, Precio_Unitario, Stock) 
-VALUES ('$claveProducto', '$nombreProducto', $piezas, '$um', '$descripcionProducto', $precioUnitario, $stock)";
+    $sql = "INSERT INTO productos (Clave_Producto_PK, Nombre_Producto, Piezas, UM, Descripcion_Producto, Precio_Unitario, Stock_Minimo, Vigente) 
+VALUES ('$claveProducto', '$nombreProducto', $piezas, '$um', '$descripcionProducto', $precioUnitario, $stock, $vigente)";
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
       echo '<script>';

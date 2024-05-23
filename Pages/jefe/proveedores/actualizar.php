@@ -119,6 +119,15 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
           required>
         <label for="estatus">Estado</label>
       </div>
+      <div class="form-group">
+        <select class="form-control" id="vigente" name="vigente" required>
+          <option value="1" <?php if ($proveedor['Vigente'] == '1')
+            echo 'selected'; ?>>Si</option>
+          <option value="0" <?php if ($proveedor['Vigente'] == '0')
+            echo 'selected'; ?>>No</option>
+        </select>
+        <label for="vigente">Vigente</label>
+      </div>
       <button type="submit" class="submit">Actualizar</button>
     </form>
   </section>

@@ -90,9 +90,18 @@ if (isset($_GET['Clave_Producto_PK'])) {
         <label for="precio">Precio unitario</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="stock" name="stock" value="<?php echo $producto['Stock']; ?>"
-          required />
+        <input type="number" class="form-control" id="stock" name="stock"
+          value="<?php echo $producto['Stock_Minimo']; ?>" required />
         <label for="stock">Stock minimo para las alertas</label>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="vigente" name="vigente" required>
+          <option value="1" <?php if ($producto['Vigente'] == '1')
+            echo 'selected'; ?>>Si</option>
+          <option value="0" <?php if ($producto['Vigente'] == '0')
+            echo 'selected'; ?>>No</option>
+        </select>
+        <label for="vigente">Vigente</label>
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>

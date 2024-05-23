@@ -62,15 +62,16 @@ $proveedores = obtenerProveedores();
           data: { term: searchTerm },
           dataType: 'json',
           success: function (data) {
-            var tableContent = '<table><tr><th>Distribuidora</th><th>Telefono Principal</th><th>Telefono Alterno</th><th>Correo Electronico</th><th>Metodo de Pago</th><th>Catalogo</th><th>Calle</th><th>Numero Exterior</th><th>Colonia</th><th>C.P.</th><th>Municipio</th><th>Estado</th><th>Acciones</th></tr>';
+            var tableContent = '<table><tr><th>Distribuidora</th><th>Telefono Principal</th><th>Telefono Alterno</th><th>Correo Electronico</th><th>Metodo de Pago</th><th>Catalogo</th><th>Calle</th><th>Numero Exterior</th><th>Colonia</th><th>C.P.</th><th>Municipio</th><th>Estado</th><th>Vigente</th><th>Acciones</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, proveedor) {
+                let vigenteText = proveedor.Vigente == 1 ? "Si" : "No";
                 tableContent += '<tr><td>' + proveedor.Nombre_Distribuidora_PK + '</td><td>' + proveedor.Telefono_Principal +
                   '</td><td>' + proveedor.Telefono_Alterno + '</td><td>' + proveedor.Correo_Electronico +
                   '</td><td>' + proveedor.Metodo_Pago + '</td><td>' + proveedor.Catalogo_Producto +
                   '</td><td>' + proveedor.Calle + '</td><td>' + proveedor.Numero_Exterior +
                   '</td><td>' + proveedor.Colonia + '</td><td>' + proveedor.Codigo_Postal + '</td><td>' + proveedor.Municipio +
-                  '</td><td>' + proveedor.Estado + '</td><td><a href="actualizar.php?Nombre_Distribuidora_PK=' + proveedor.Nombre_Distribuidora_PK + '">Editar</a></td></tr>';
+                  '</td><td>' + proveedor.Estado + '</td><td>' + vigenteText + '</td><td><a href="actualizar.php?Nombre_Distribuidora_PK=' + proveedor.Nombre_Distribuidora_PK + '">Editar</a></td></tr>';
               });
             } else {
               tableContent += '<tr><td colspan="13">No se encontraron resultados</td></tr>';
@@ -116,6 +117,7 @@ $proveedores = obtenerProveedores();
         <th>C.P.</th>
         <th>Municipio</th>
         <th>Estado</th>
+        <th>Vigente</th>
         <th>Acciones</th>
       </tr>
       <?php if (count($proveedores) > 0): ?>
@@ -133,6 +135,11 @@ $proveedores = obtenerProveedores();
             <td><?php echo $proveedor["Codigo_Postal"]; ?></td>
             <td><?php echo $proveedor["Municipio"]; ?></td>
             <td><?php echo $proveedor["Estado"]; ?></td>
+            <td><?php if ($proveedor['Vigente'] == 1) {
+              echo "Si";
+            } else {
+              echo "No";
+            } ?></td>
             <td><a
                 href="actualizar.php?Nombre_Distribuidora_PK=<?php echo $proveedor['Nombre_Distribuidora_PK']; ?>">Editar</a>
             </td>

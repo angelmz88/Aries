@@ -116,7 +116,7 @@ $productos = obtenerProductos();
             <td><?php echo $producto['UM']; ?></td>
             <td><?php echo $producto['Descripcion_Producto']; ?></td>
             <td><?php echo $producto['Precio_Unitario']; ?></td>
-            <td><?php echo $producto['Stock']; ?></td>
+            <td><?php echo $producto['Stock_Minimo']; ?></td>
             <td><a href="actualizar.php?Clave_Producto_PK=<?php echo $producto['Clave_Producto_PK']; ?>">Editar</a></td>
           </tr>
         <?php endforeach; ?>

@@ -98,12 +98,12 @@ include ("empleados/../../../../php/final_sesion.php");
     $salario = $_POST['salary'];
     $nomina = $_POST['nomina'];
     $estatus = $_POST['estatus'];
-    $tipo = $_POST['tipo'];
+    $tipo = $_POST['ipo'];
 
     include ("empleados/../../../../php/bd.php");
 
     // Consulta SQL de inserción
-    $sql = "INSERT INTO empleados (Numero_Telefono_PK, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Correo_Electronico, Numero_Seguridad_Social, Salario, Tipo_Nomina, Vigente, Tipo) 
+    $sql = "INSERT INTO empleados (Numero_Telefono_PK, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Correo_Electronico, Numero_Seguridad_Social, Salario, Tipo_Nomina, Vigente, Tipo_Empleado) 
 VALUES ('$numTelPk', '$primer_Nombre', '$segundo_Nombre', '$primer_Apellido', '$segundo_Apellido', '$correo_Electronico', '$nss', $salario, '$nomina', $estatus, '$tipo')";
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {

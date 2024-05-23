@@ -62,7 +62,7 @@ label {
   border-radius: 5px;
   display: flex;
   align-items: center;
-  /* align-self: self-end; */
+  align-self: self-end;
   border: 0px solid #0cc863;
   background-color: #0cc863;
   color: azure;
@@ -73,6 +73,19 @@ label {
 .submit:hover {
   background-color: #0f8546;
   transition: all ease-in-out 0.5s;
+}
+
+.producto,
+.prenda {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+}
+
+.accion {
+  margin-bottom: 20px;
 }
 
 /* Footer */

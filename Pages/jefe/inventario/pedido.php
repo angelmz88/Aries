@@ -61,7 +61,7 @@ include ("empleados/../../../../php/bd.php");
           <button type="button" class="remove-producto submit">Quitar producto</button>
         </div>
       </div>
-      <button type="button" id="add-producto" class="submit">Agregar producto</button>
+      <button type="button" id="add-producto" class="submit accion">Agregar producto</button>
       <button type="submit" class="submit">Guardar</button>
     </form>
     <script>
@@ -121,7 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Insertar los productos
     for ($i = 0; $i < count($productos); $i++) {
       $producto_actual = $productos[$i];
-      echo "Buscando producto: " . $producto_actual . "<br>";
 
       $consulta_precio = "SELECT Precio_Unitario, Clave_Producto_PK FROM productos WHERE Nombre_Producto = ?";
       $stmt_precio = $conn->prepare($consulta_precio);
@@ -136,9 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row_precio = $result_precio->fetch_assoc();
         $precio_unitario = (int) $row_precio['Precio_Unitario'];
         $id_prenda = trim($row_precio['Clave_Producto_PK']); // Tratar la clave del producto como string
-
-        // Depuración: imprimir el id del producto
-        echo "Insertando producto con ID: " . $id_prenda . " y precio unitario: " . $precio_unitario . "<br>";
 
         // Calcular el precio total
         $precio_total = $precio_unitario * (int) $numero_piezas[$i];
@@ -170,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->commit(); // Confirmar transacción
     echo '<script>';
-    echo 'alert("Nota y productos registrados correctamente.");';
+    echo 'alert("Pedido y productos registrados correctamente.");';
     // echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
     echo '</script>';
   } catch (Exception $e) {

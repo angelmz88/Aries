@@ -13,12 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigoPostal = $_POST['cp'];
     $municipio = $_POST['mun'];
     $estado = $_POST['estatus'];
+    $vigente = $_POST['vigente'];
 
     // Consulta SQL de actualización
     $sql = "UPDATE proveedores SET Telefono_Principal = '$telefono', 
     Telefono_Alterno = '$telefonoAlterno', Correo_Electronico = '$email', Metodo_Pago = '$mPago', Catalogo_Producto = '$catalogo', 
     Calle = '$calle', Numero_Exterior = '$numExterior', Colonia = '$colonia', Codigo_Postal = '$codigoPostal', 
-    Municipio = '$municipio', Estado = '$estado' WHERE Nombre_Distribuidora_PK = '$nom'";
+    Municipio = '$municipio', Estado = '$estado', Vigente = $vigente WHERE Nombre_Distribuidora_PK = '$nom'";
 
     echo $sql;
 

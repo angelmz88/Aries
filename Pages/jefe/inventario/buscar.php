@@ -59,19 +59,21 @@ $productos = obtenerProductos();
           data: { term: searchTerm },
           dataType: 'json',
           success: function (data) {
-            var tableContent = '<table><tr><th>Clave</th><th>Nombre</th><th>Piezas</th><th>UM</th><th>Descripción</th><th>Precio unitario</th><th>Alerta de stock</th><th>Acciones</th></tr>';
+            var tableContent = '<table><tr><th>Clave</th><th>Nombre</th><th>Piezas</th><th>UM</th><th>Descripción</th><th>Precio unitario</th><th>Alerta de stock</th><th>Vigente</th><th>Acciones</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, producto) {
+                let vigenteText = producto.Vigente == 1 ? "Si" : "No";
                 tableContent += '<tr><td>' + producto.Clave_Producto_PK + '</td><td>' + producto.Nombre_Producto +
                   '</td><td>' + producto.Piezas + '</td><td>' + producto.UM + '</td><td>' + producto.Descripcion_Producto +
-                  '</td><td>' + producto.Precio_Unitario + '</td><td>' + producto.Stock +
-                  '</td><td><a href="actualizar.php?Clave_Producto_PK=' + producto.Clave_Producto_PK + '">Editar</a></td></tr>';
+                  '</td><td>' + producto.Precio_Unitario + '</td><td>' + producto.Stock_Minimo +
+                  '</td><td>' + vigenteText + '</td><td><a href="actualizar.php?Clave_Producto_PK=' + producto.Clave_Producto_PK + '">Editar</a></td></tr>';
               });
             } else {
-              tableContent += '<tr><td colspan="8">No se encontraron resultados</td></tr>';
+              tableContent += '<tr><td colspan="9">No se encontraron resultados</td></tr>';
             }
             tableContent += '</table>';
             $('#resultados').html(tableContent);
+
           },
           error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -107,6 +109,7 @@ $productos = obtenerProductos();
         <th>Descripción</th>
         <th>Precio unitario</th>
         <th>Alerta de stock</th>
+        <th>Vigente</th>
         <th>Acciones</th>
       </tr>
       <?php if (count($productos) > 0): ?>
@@ -119,6 +122,11 @@ $productos = obtenerProductos();
             <td><?php echo $producto['Descripcion_Producto']; ?></td>
             <td><?php echo $producto['Precio_Unitario']; ?></td>
             <td><?php echo $producto['Stock_Minimo']; ?></td>
+            <td><?php if ($producto['Vigente'] == 1) {
+              echo "Si";
+            } else {
+              echo "No";
+            } ?></td>
             <td><a href="actualizar.php?Clave_Producto_PK=<?php echo $producto['Clave_Producto_PK']; ?>">Editar</a></td>
           </tr>
         <?php endforeach; ?>

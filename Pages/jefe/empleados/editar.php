@@ -12,13 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomina = $_POST['nomina'];
     $estatus = $_POST['estatus'];
     $tipo = $_POST['tipo'];
+    $vigente = $_POST['estatus'];
 
     // Consulta SQL de actualización
     $sql = "UPDATE empleados SET Numero_Telefono_PK = '$numTelPk', 
     Primer_Nombre = '$primer_Nombre', Segundo_Nombre = '$segundo_Nombre', Primer_Apellido = '$primer_Apellido', 
     Segundo_Apellido = '$segundo_Apellido', Correo_Electronico = '$correo_Electronico',
     Numero_Seguridad_Social = '$nss', Salario = $salario, Tipo_Nomina = '$nomina', 
-    Vigente = '$estatus', Tipo = '$tipo' WHERE Numero_Telefono_PK = '$numTelPk'";
+    Vigente = '$estatus', Tipo_Empleado = '$tipo', Vigente = $vigente WHERE Numero_Telefono_PK = '$numTelPk'";
 
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {

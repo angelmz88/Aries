@@ -80,7 +80,7 @@ include ("notas/../../../php/deep_sesion.php");
         </div>
       </div>
 
-      <button type="button" id="add-prenda" class="submit">Agregar prenda</button>
+      <button type="button" id="add-prenda" class="submit accion">Agregar prenda</button>
 
       <div class="form-group">
         <input type="date" class="form-control" name="fecha-entrega" required />
@@ -91,14 +91,10 @@ include ("notas/../../../php/deep_sesion.php");
         <label for="hora-entrega">Hora de entrega (estimada)</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" name="precio-total" required />
-        <label for="precio-total">Precio total</label>
-      </div>
-      <div class="form-group">
         <input type="text" class="form-control" name="notas-adicionales" required />
         <label for="notas-adicionales">Notas adicionales</label>
       </div>
-      <button type="submit" class="submit">Guardar</button>
+      <button type="submit" class="submit" onclick="return confirmSubmission()">Guardar</button>
     </form>
     <script>
       document.getElementById('add-prenda').addEventListener('click', function () {
@@ -119,6 +115,10 @@ include ("notas/../../../php/deep_sesion.php");
           }
         }
       });
+
+      function confirmSubmission() {
+        return confirm("¿Los datos son correctos? Una vez realizada la nota no se puede modificar.");
+      }
     </script>
   </section>
   <footer class="footer">
@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->commit(); // Confirmar transacción
     echo '<script>';
-    echo 'alert("Nota y prendas registradas correctamente");';
+    echo 'alert("Nota y prendas registradas correctamente. Folio de nota: ' . $nota_id . ' Precio total: ' . $precio_total . ' ");';
     // echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
     echo '</script>';
   } catch (Exception $e) {
