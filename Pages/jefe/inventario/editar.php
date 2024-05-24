@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Piezas = $piezas, UM = '$um', Descripcion_Producto = '$descripcionProducto', Precio_Unitario = $precioUnitario, 
     Stock_Minimo = $stock, Vigente = $vigente WHERE Clave_Producto_PK = '$claveProducto'";
 
+    echo $sql;
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
         echo '<script>';

@@ -8,7 +8,9 @@ use PHPMailer\PHPMailer\Exception;
 include ("bd.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['Clave_Producto_PK'];
+    $id = $_POST['clave'];
+
+    echo $id;
 
     $query_stock = "SELECT Stock_Minimo FROM Productos WHERE Clave_Producto_PK = '900087'";
     $result_stock = $conn->query($query_stock);
@@ -20,11 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre_Producto = $producto['Nombre_Producto'];
     $numero_Producto = $producto['Piezas'];
 
-    echo "Nombre del producto";
-
     if ($numero_Producto <= $stock_Producto) {
         // Cargar el autoloader de Composer
-        require '../vendor/autoload.php';
+        require 'php/../../vendor/autoload.php';
 
         // Crear una instancia; pasando `true` habilita excepciones
         $mail = new PHPMailer(true);
@@ -110,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <p>Actualmente quedan solo <strong>$numero_Producto unidades</strong> en nuestro inventario.</p>
                         </div>
                         <div class='footer'>
-                            <p>Gracias por confiar en nosotros.</p>
-                            <p>&copy; 2024 Nombre de tu Empresa. Todos los derechos reservados.</p>
+                            <p>Tintorería Aries.</p>
+                            <p>&copy; 2024. Todos los derechos reservados.</p>
                         </div>
                     </div>
                 </body>
