@@ -1,48 +1,127 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
+// Importar clases de PHPMailer en el espacio de nombres global
+// Estas deben estar en la parte superior de tu script, no dentro de una función
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
-require '../vendor/autoload.php';
+include ("bd.php");
 
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['Clave_Producto_PK'];
 
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth = true;                                   //Enable SMTP authentication
-    $mail->Username = 'joseangelmarquez080802@gmail.com';                     //SMTP username
-    $mail->Password = 'xogowuaoprxzlrlr';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $query_stock = "SELECT Stock_Minimo FROM Productos WHERE Clave_Producto_PK = '900087'";
+    $result_stock = $conn->query($query_stock);
+    $stock_Producto = $result_stock->fetch_assoc()['Stock_Minimo'];
 
-    //Recipients
-    $mail->setFrom('joseangelmarquez080802@gmail.com', 'SIAUTO');
-    $mail->addAddress('joseangelmarquez080802@gmail.com', 'Empleados de Aries');     //Add a recipient              //Name is optional
-    $mail->addCC('jocelyndeshuef@gmail.com');
-    $mail->addCC('lufer.5698@gmail.com');
-    $mail->addCC('valencializettet@gmail.com');
-    $mail->addBCC('josmargustavopalominocastelan@gmail.com');
+    $query_Nombre = "SELECT Nombre_Producto, Piezas FROM Productos WHERE Clave_Producto_PK = '900087'";
+    $result_Nombre = $conn->query($query_Nombre);
+    $producto = $result_Nombre->fetch_assoc();
+    $nombre_Producto = $producto['Nombre_Producto'];
+    $numero_Producto = $producto['Piezas'];
 
-    //Attachments
-    //  $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    echo "Nombre del producto";
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Alerta de Stock';
-    $mail->Body = 'Hola equipo. Esto es solo una prueba. Si están leyendo esto es porque ya he podido programar la primera parte del envio de correos.
-    Esto se está enviando desde PHP. <b>Cuando leas esto manda mensaje al grupo de Whatsapp para confirmar que te ha llegado, </b>eso me será de gran ayuda.';
-    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    if ($numero_Producto <= $stock_Producto) {
+        // Cargar el autoloader de Composer
+        require '../vendor/autoload.php';
 
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // Crear una instancia; pasando `true` habilita excepciones
+        $mail = new PHPMailer(true);
+
+        try {
+            // Configuración del servidor
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Habilitar salida de depuración detallada
+            $mail->isSMTP();                                            // Enviar usando SMTP
+            $mail->Host = 'smtp.gmail.com';                             // Establecer el servidor SMTP para enviar a través de él
+            $mail->SMTPAuth = true;                                     // Habilitar autenticación SMTP
+            $mail->Username = 'joseangelmarquez080802@gmail.com';       // Nombre de usuario SMTP
+            $mail->Password = 'xogowuaoprxzlrlr';                       // Contraseña SMTP
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Habilitar encriptación TLS implícita
+            $mail->Port = 465;                                          // Puerto TCP para conectarse; usa 587 si has establecido `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            // Destinatarios
+            $mail->setFrom('joseangelmarquez080802@gmail.com', 'SIAUTO');
+            $mail->addAddress('joseangelmarquez080802@gmail.com', 'Empleados de Aries');     // Añadir un destinatario
+            $mail->addCC('jocelyndeshuef@gmail.com');
+            $mail->addCC('lufer.5698@gmail.com');
+            $mail->addCC('valencializettet@gmail.com');
+            $mail->addBCC('josmargustavopalominocastelan@gmail.com');
+
+            // Contenido
+            $mail->isHTML(true);                                  // Establecer el formato del correo a HTML
+            $mail->Subject = 'Alerta de Stock';
+            $mail->Body = "
+                <!DOCTYPE html>
+                <html lang='es'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <title>Alerta de Stock</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .container {
+                            width: 100%;
+                            max-width: 600px;
+                            margin: 0 auto;
+                            background-color: #ffffff;
+                            border: 1px solid #dddddd;
+                            padding: 20px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }
+                        .header {
+                            background-color: #656ed3;
+                            padding: 10px;
+                            text-align: center;
+                            color: #ffffff;
+                        }
+                        .content {
+                            padding: 20px;
+                            text-align: center;
+                        }
+                        .content h1 {
+                            color: #333333;
+                        }
+                        .content p {
+                            color: #666666;
+                        }
+                        .footer {
+                            text-align: center;
+                            padding: 10px;
+                            background-color: #f4f4f4;
+                            color: #999999;
+                            font-size: 12px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='header'>
+                            <h1>Alerta de Stock Bajo</h1>
+                        </div>
+                        <div class='content'>
+                            <h1>¡Aviso Importante!</h1>
+                            <p>El producto <strong>$nombre_Producto</strong> se está quedando sin stock.</p>
+                            <p>Actualmente quedan solo <strong>$numero_Producto unidades</strong> en nuestro inventario.</p>
+                        </div>
+                        <div class='footer'>
+                            <p>Gracias por confiar en nosotros.</p>
+                            <p>&copy; 2024 Nombre de tu Empresa. Todos los derechos reservados.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            ";
+
+            $mail->send();
+            echo 'El mensaje ha sido enviado';
+        } catch (Exception $e) {
+            echo "El mensaje no pudo ser enviado. Error de Mailer: {$mail->ErrorInfo}";
+        }
+    }
 }
