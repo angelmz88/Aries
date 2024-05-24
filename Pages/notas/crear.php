@@ -32,9 +32,9 @@ include ("notas/../../../php/deep_sesion.php");
       </div>
       <div class="form-group">
         <select class="form-control" name="tipo-servicio" required>
-          <option value="Lavado">Lavado</option>
-          <option value="Planchado">Planchado</option>
-          <option value="Lavado en seco">Lavado en seco</option>
+          <option value="lavado">Lavado</option>
+          <option value="planchado">Planchado</option>
+          <option value="planta">Lavado en seco</option>
           <option value="Teñido">Teñido</option>
           <option value="Reparacion">Reparacion</option>
         </select>
