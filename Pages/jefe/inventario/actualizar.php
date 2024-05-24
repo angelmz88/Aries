@@ -47,7 +47,7 @@ if (isset($_GET['Clave_Producto_PK'])) {
     </div>
   </section>
   <section class="options">
-    <form action="editar.php" id="form-register" method="post" class="form">
+    <form action="procesar_formulario.php" id="form-register" method="post" class="form">
       <div class="form-group">
         <input type="text" class="form-control" id="clave" name="clave" disabled
           value="<?php echo $producto['Clave_Producto_PK']; ?>" />
