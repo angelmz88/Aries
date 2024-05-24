@@ -33,7 +33,7 @@ ADD CONSTRAINT Identificador_Area_Mostrador CHECK (Identificador_Area_FK = 'M');
 
 SELECT DISTINCT(Area_Siguiente) FROM Mostrador;
 ALTER TABLE Mostrador
-ADD CONSTRAINT Area_Siguiente_Mostrador_FK CHECK (Area_Siguiente IN ('L', 'REP', 'P', 'PL'));
+ADD CONSTRAINT Area_Siguiente_Mostrador_FK CHECK (Area_Siguiente IN ('L', 'REP', 'P', 'PL', 'N/A'));
 
 -- Relacion de planta
 ALTER TABLE Planta
