@@ -34,7 +34,7 @@ include ("notas/../../../php/deep_sesion.php");
         <select class="form-control" name="tipo-servicio" required>
           <option value="lavado">Lavado</option>
           <option value="planchado">Planchado</option>
-          <option value="planta">Lavado en seco</option>
+          <option value="Lavado en seco">Lavado en seco</option>
           <option value="Teñido">Teñido</option>
           <option value="Reparacion">Reparacion</option>
         </select>
@@ -155,8 +155,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$conn->query($sql_nota)) {
       throw new Exception("Error al insertar nota: " . $conn->error);
     }
+
+    switch ($tipo_servicio) {
+      case 'mostrador':
+        $clave_area = 'M';
+        break;
+      case 'planta':
+        $clave_area = 'P';
+        break;
+      case 'lavado':
+        $clave_area = 'L';
+        break;
+      case 'planchado':
+        $clave_area = 'PL';
+        break;
+    }
+
+
     $nota_id = $conn->insert_id; // Obtener el ID de la nota insertada
 
+    $query_Mover = "INSERT INTO mostrador (Folio_Nota_PK_FK, Fecha_Entrada_PK, Hora_Entrada, Estatus, Identificador_Area_FK, Area_Siguiente)
+    VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
+
+    if (!$conn->query($query_Mover)) {
+      throw new Exception("Error al mover nota: " . $conn->error);
+    }
     // Insertar las prendas
     for ($i = 0; $i < count($tipo_prenda); $i++) {
       $consulta_precio = "SELECT Precio_Unitario FROM precio_prendas WHERE Tipo_Prenda_PK = '" . $tipo_prenda[$i] . "'";
