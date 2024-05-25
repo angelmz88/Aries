@@ -76,6 +76,10 @@ include ("notas/../../../php/deep_sesion.php");
             <input type="text" class="form-control" name="color-prenda[]" required />
             <label for="color-prenda">Color de prendas</label>
           </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="notas-adicionales[]" required />
+            <label for="notas-adicionales">Notas adicionales</label>
+          </div>
           <button type="button" class="remove-prenda submit">Quitar prenda</button>
         </div>
       </div>
@@ -90,10 +94,6 @@ include ("notas/../../../php/deep_sesion.php");
         <input type="time" class="form-control" name="hora-entrega" required />
         <label for="hora-entrega">Hora de entrega (estimada)</label>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" name="notas-adicionales" required />
-        <label for="notas-adicionales">Notas adicionales</label>
-      </div>
       <button type="submit" class="submit" onclick="return confirmSubmission()">Guardar</button>
     </form>
     <script>
@@ -102,6 +102,7 @@ include ("notas/../../../php/deep_sesion.php");
         const newPrenda = container.children[0].cloneNode(true);
         newPrenda.querySelector('input[name="numero-prenda[]"]').value = "";
         newPrenda.querySelector('input[name="color-prenda[]"]').value = "";
+        newPrenda.querySelector('input[name="notas-adicionales[]"]').value = ""; // Limpiar el campo de notas adicionales
         container.appendChild(newPrenda);
       });
 
@@ -135,9 +136,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $tipo_prenda = isset($_POST['tipo-prenda']) ? $_POST['tipo-prenda'] : [];
   $numero_prenda = isset($_POST['numero-prenda']) ? $_POST['numero-prenda'] : [];
   $color_prenda = isset($_POST['color-prenda']) ? $_POST['color-prenda'] : [];
+  $notas_adicionales = isset($_POST['notas-adicionales']) ? $_POST['notas-adicionales'] : []; // Cambio aquí
   $fecha_entrega = isset($_POST['fecha-entrega']) ? $_POST['fecha-entrega'] : null;
   $hora_entrega = isset($_POST['hora-entrega']) ? $_POST['hora-entrega'] : null;
-  $notas_adicionales = isset($_POST['notas-adicionales']) ? $_POST['notas-adicionales'] : '';
 
   $hora_actual = date('H:i:s');
   $fecha_actual = date('Y-m-d');
@@ -152,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   try {
     // Insertar información de la nota
     $sql_nota = "INSERT INTO notas (Numero_Telefono_Cliente_FK, Numero_Telefono_Empleado_FK, Tipo_Servicio, Fecha_Entrega_Estimada, Hora_Entrega_Estimada)
-                 VALUES ('$tel', '$tel_empleado','$tipo_servicio', '$fecha_entrega', '$hora_entrega')";
+    VALUES ('$tel', '$tel_empleado','$tipo_servicio', '$fecha_entrega', '$hora_entrega')";
     if (!$conn->query($sql_nota)) {
       throw new Exception("Error al insertar nota: " . $conn->error);
     }
@@ -179,13 +180,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($tipo_servicio == 'Tenido' || $tipo_servicio == 'Reparacion') {
       $query_Mover = "INSERT INTO tenido_reparacion (Folio_Nota_PK_FK, Cantidad_Prendas_PK, Tipo_Servicio, Telefono_Colaborador_FK, Estatus)
-    VALUES ('$nota_id', 0, '$tipo_servicio', '5513106553', 0)";
+VALUES ('$nota_id', 0, '$tipo_servicio', '5513106553', 0)";
       if (!$conn->query($query_Mover)) {
         throw new Exception("Error al mover nota: " . $conn->error);
       }
     } else {
       $query_Mover = "INSERT INTO mostrador (Folio_Nota_PK_FK, Fecha_Entrada_PK, Hora_Entrada, Estatus, Identificador_Area_FK, Area_Siguiente)
-    VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
+VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
 
       if (!$conn->query($query_Mover)) {
         throw new Exception("Error al mover nota: " . $conn->error);
@@ -209,8 +210,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Insertar los datos en la base de datos
             $sql_prenda = "INSERT INTO prendas (Folio_Nota_PK_FK, Tipo_Prenda_PK_FK, Color, Cantidad, Precio_Total, Observaciones, Fecha_Entrada, Hora_Entrada) 
-                          VALUES ('$nota_id', '" . $tipo_prenda[$i] . "', '" . $color_prenda[$i] . "', '" . $numero_prenda[$i] . "', $precio_total, 
-                          '" . $notas_adicionales[$i] . "', '$fecha_actual', '$hora_actual')";
+             VALUES ('$nota_id', '" . $tipo_prenda[$i] . "', '" . $color_prenda[$i] . "', '" . $numero_prenda[$i] . "', $precio_total, 
+             '" . $notas_adicionales[$i] . "', '$fecha_actual', '$hora_actual')";
             if (!$conn->query($sql_prenda)) {
               throw new Exception("Error al insertar prenda: " . $conn->error);
             }

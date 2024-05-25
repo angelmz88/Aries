@@ -1,4 +1,5 @@
 <?php
+// Incluir archivos necesarios y funciones
 include ("notas/../../../php/deep_sesion.php");
 include ("notas/../../../php/bd.php");
 
@@ -6,16 +7,17 @@ include ("notas/../../../php/bd.php");
 function obtenerNotas($term = '')
 {
   global $conn;
-  $sql = "SELECT * FROM notas ORDER BY Folio_Nota_PK DESC";
+  $sql = "SELECT * FROM notas";
   if ($term != '') {
     $sql .= " WHERE Folio_Nota_PK LIKE '%$term%' OR Numero_Telefono_Cliente_FK LIKE '%$term%' OR Numero_Telefono_Empleado_FK LIKE '%$term%' 
-    OR Tipo_Servicio LIKE '%$term%' OR Fecha_Entrega_Estimada LIKE '%$term%' OR Hora_Entrega_Estimada LIKE '%$term%'";
+        OR Tipo_Servicio LIKE '%$term%' OR Fecha_Entrega_Estimada LIKE '%$term%' OR Hora_Entrega_Estimada LIKE '%$term%'";
   }
+  $sql .= " ORDER BY Folio_Nota_PK DESC"; // Asegúrate de que la ordenación sea la última parte de la consulta
   $result = $conn->query($sql);
 
   $notas = array();
 
-  if ($result->num_rows > 0) {
+  if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       $notas[] = $row;
     }
@@ -56,7 +58,7 @@ $notas = obtenerNotas();
       $('#search').on('keyup', function () {
         var searchTerm = $(this).val();
         $.ajax({
-          url: '',
+          url: '', // La URL actual
           type: 'GET',
           data: { term: searchTerm },
           dataType: 'json',
@@ -67,7 +69,7 @@ $notas = obtenerNotas();
                 tableContent += '<tr><td>' + nota.Folio_Nota_PK + '</td><td>' + nota.Numero_Telefono_Cliente_FK +
                   '</td><td>' + nota.Numero_Telefono_Empleado_FK + '</td><td>' + nota.Tipo_Servicio +
                   '</td><td>' + nota.Fecha_Entrega_Estimada + '</td><td>' + nota.Hora_Entrega_Estimada +
-                  '</td><td><a href="seguimiento.php?Folio_Nota_PK=' + nota.Folio_Nota_PK + '">Seguimiento</a></td></tr>';
+                  '</td><td><a href="seguimiento.php?Folio_Nota_PK=' + nota.Folio_Nota_PK + '">Seguimiento</a><a href="imprimir.php?Folio_Nota_PK=' + nota.Folio_Nota_PK + '">Imprimir</a></td></tr>';
               });
             } else {
               tableContent += '<tr><td colspan="7">No se encontraron resultados</td></tr>';
@@ -118,7 +120,8 @@ $notas = obtenerNotas();
             <td><?php echo $nota["Tipo_Servicio"]; ?></td>
             <td><?php echo $nota["Fecha_Entrega_Estimada"]; ?></td>
             <td><?php echo $nota["Hora_Entrega_Estimada"]; ?></td>
-            <td><a href="seguimiento.php?Folio_Nota_PK=<?php echo $nota['Folio_Nota_PK']; ?>">Seguimiento</a></td>
+            <td><a href="seguimiento.php?Folio_Nota_PK=<?php echo $nota['Folio_Nota_PK']; ?>">Seguimiento</a><a
+                href="imprimir.php?Folio_Nota_PK=<?php echo $nota['Folio_Nota_PK']; ?>">Imprimir</a></td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>
