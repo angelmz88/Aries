@@ -40,6 +40,36 @@ if (isset($_GET['Folio_Nota_PK'])) {
     <link rel="stylesheet" href="../../css/forms-register.css" />
     <link rel="shortcut icon" href="../../img/global/lavanderia.png" />
     <title>Notas</title>
+    <script>
+        function updateSelectOptions() {
+            const selectDesde = document.querySelector('select[name="area-mover-desde"]');
+            const selectA = document.querySelector('select[name="area-mover"]');
+
+            // Habilitar todas las opciones antes de aplicar la lógica de deshabilitación
+            selectDesde.querySelectorAll('option').forEach(option => option.disabled = false);
+            selectA.querySelectorAll('option').forEach(option => option.disabled = false);
+
+            const selectedValueDesde = selectDesde.value;
+            const selectedValueA = selectA.value;
+
+            if (selectedValueDesde) {
+                selectA.querySelector(`option[value="${selectedValueDesde}"]`).disabled = true;
+            }
+            if (selectedValueA) {
+                selectDesde.querySelector(`option[value="${selectedValueA}"]`).disabled = true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectDesde = document.querySelector('select[name="area-mover-desde"]');
+            const selectA = document.querySelector('select[name="area-mover"]');
+
+            selectDesde.addEventListener('change', updateSelectOptions);
+            selectA.addEventListener('change', updateSelectOptions);
+
+            updateSelectOptions();
+        });
+    </script>
 </head>
 
 <body>
@@ -129,12 +159,14 @@ if (isset($_GET['Folio_Nota_PK'])) {
             </tr>
         </table>
     </section>
-    <section class="options">
-        <h3>Cambiar a la siguiente área</h3>
-        <form action="seguimiento.php" method="post" class="form">
+    <section class="form-register options">
+        <h3>Opciones</h3>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?Folio_Nota_PK=' . urlencode($id)); ?>"
+            method="POST" class="form">
             <input type="hidden" name="Folio_Nota_PK" value="<?php echo htmlspecialchars($id); ?>" />
             <div class="form-group">
                 <select class="form-control" name="area-mover-desde" required>
+                    <option value="">Seleccionar área</option>
                     <option value="lavado">Lavado</option>
                     <option value="planta">Planta</option>
                     <option value="planchado">Planchado</option>
@@ -144,6 +176,7 @@ if (isset($_GET['Folio_Nota_PK'])) {
             </div>
             <div class="form-group">
                 <select class="form-control" name="area-mover" required>
+                    <option value="">Seleccionar área</option>
                     <option value="lavado">Lavado</option>
                     <option value="planta">Planta</option>
                     <option value="planchado">Planchado</option>
@@ -207,9 +240,9 @@ if (isset($_GET['Folio_Nota_PK'])) {
         Area_Siguiente = '$clave_area', Estatus = 1 WHERE Folio_Nota_PK_FK = '$id'";
 
             if ($conn->query($query_Mover) === TRUE) {
-                echo '<script>alert("Producto registrado correctamente");</script>';
+                // echo '<script>alert("Producto registrado correctamente");</script>';
             } else {
-                echo '<script>alert("Error al insertar datos: ' . $conn->error . '");</script>';
+                echo '<script>alert("Error: No se puede realizar ese movimiento");</script>';
             }
 
             if ($conn->query($query_Actualizar) === TRUE) {
@@ -218,7 +251,7 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 echo '</script>';
 
             } else {
-                echo '<script>alert("Error al mover: ' . $conn->error . '");</script>';
+                echo '<script>alert("Error: No se puede realizar ese movimiento");</script>';
             }
         } else {
             date_default_timezone_set('America/Mexico_City');
@@ -228,14 +261,14 @@ if (isset($_GET['Folio_Nota_PK'])) {
             Area_Siguiente = '$clave_area', Estatus = 1 WHERE Folio_Nota_PK_FK = '$id'";
 
             $query_Actualizar_Mostrador = "UPDATE mostrador SET Fecha_Salida = '$fecha_entrada', Hora_Salida = '$hora_entrada', 
-            Area_Siguiente = 'N/A' WHERE Folio_Nota_PK_FK = '$id'";
+            Area_Siguiente = 'NA' WHERE Folio_Nota_PK_FK = '$id'";
 
             if ($conn->query($query_Actualizar) === TRUE && $conn->query($query_Actualizar_Mostrador) === TRUE) {
-                echo '<script>alert("Primer IF entró correctamente");';
+                echo '<script>alert("Movimiento realizado con exito");';
                 echo 'window.location.href = "buscar.php";';
                 echo '</script>';
             } else {
-                echo '<script>alert("Error al mover: ' . $conn->error . '");</script>';
+                echo '<script>alert("Error: No se puede realizar ese movimiento");</script>';
             }
         }
     }

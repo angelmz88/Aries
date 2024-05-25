@@ -61,12 +61,11 @@ $externos = obtenerexternos();
           data: { term: searchTerm },
           dataType: 'json',
           success: function (data) {
-            var tableContent = '<table><tr><th>Folio_externo_PK_FK</th><th>Cantidad_Prendas_PK</th><th>Tipo_Servicio</th><th>Telefono_Colaborador_FK</th><th>Estatus</th><th>Acciones</th></tr>';
+            var tableContent = '<table><tr><th>Folio Nota</th><th>Tipo de Servicio</th><th>Telefono Colaborador</th><th>Estatus</th></tr>';
             if (data.length > 0) {
               $.each(data, function (index, externo) {
-                tableContent += '<tr><td>' + externo.Folio_externo_PK + '</td><td>' + externo.Cantidad_Prendas_PK +
-                  '</td><td>' + externo.Tipo_Servicio + '</td><td>' + externo.Telefono_Colaborador_FK +
-                  '</td><td>' + externo.Estatus + '</td><td>Seguimiento</a></td></tr>';
+                tableContent += '<tr><td>' + externo.Folio_externo_PK + '</td><td>' + externo.Tipo_Servicio + '</td><td>' + externo.Telefono_Colaborador_FK +
+                  '</td><td>' + externo.Estatus + '</td></tr>';
               });
             } else {
               tableContent += '<tr><td colspan="6">No se encontraron resultados</td></tr>';
@@ -100,17 +99,15 @@ $externos = obtenerexternos();
   <section id="resultados" class="resultados">
     <table class="table">
       <tr>
-        <th>Folio_Nota_PK_FK</th>
-        <th>Cantidad_Prendas_PK</th>
-        <th>Tipo_Servicio</th>
-        <th>Telefono_Colaborador_FK</th>
+        <th>Folio Nota</th>
+        <th>Tipo de Servicio</th>
+        <th>Telefono Colaborador</th>
         <th>Estatus</th>
       </tr>
       <?php if (count($externos) > 0): ?>
         <?php foreach ($externos as $externo): ?>
           <tr>
             <td><?php echo $externo["Folio_Nota_PK_FK"]; ?></td>
-            <td><?php echo $externo["Cantidad_Prendas_PK"]; ?></td>
             <td><?php echo $externo["Tipo_Servicio"]; ?></td>
             <td><?php echo $externo["Telefono_Colaborador_FK"]; ?></td>
             <td><?php echo $externo["Estatus"]; ?></td>

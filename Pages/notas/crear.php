@@ -35,7 +35,7 @@ include ("notas/../../../php/deep_sesion.php");
           <option value="lavado">Lavado</option>
           <option value="planchado">Planchado</option>
           <option value="Lavado en seco">Lavado en seco</option>
-          <option value="Teñido">Teñido</option>
+          <option value="Tenido">Teñido</option>
           <option value="Reparacion">Reparacion</option>
         </select>
         <label for="tipo-servicio">Tipo de servicio:</label>
@@ -175,43 +175,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nota_id = $conn->insert_id; // Obtener el ID de la nota insertada
 
-    $query_Mover = "INSERT INTO mostrador (Folio_Nota_PK_FK, Fecha_Entrada_PK, Hora_Entrada, Estatus, Identificador_Area_FK, Area_Siguiente)
+    $query_Mover = '';
+
+    if ($tipo_servicio == 'Tenido' || $tipo_servicio == 'Reparacion') {
+      $query_Mover = "INSERT INTO tenido_reparacion (Folio_Nota_PK_FK, Cantidad_Prendas_PK, Tipo_Servicio, Telefono_Colaborador_FK, Estatus)
+    VALUES ('$nota_id', 0, '$tipo_servicio', '5513106553', 0)";
+      if (!$conn->query($query_Mover)) {
+        throw new Exception("Error al mover nota: " . $conn->error);
+      }
+    } else {
+      $query_Mover = "INSERT INTO mostrador (Folio_Nota_PK_FK, Fecha_Entrada_PK, Hora_Entrada, Estatus, Identificador_Area_FK, Area_Siguiente)
     VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
 
-    if (!$conn->query($query_Mover)) {
-      throw new Exception("Error al mover nota: " . $conn->error);
-    }
-    // Insertar las prendas
-    for ($i = 0; $i < count($tipo_prenda); $i++) {
-      $consulta_precio = "SELECT Precio_Unitario FROM precio_prendas WHERE Tipo_Prenda_PK = '" . $tipo_prenda[$i] . "'";
-      $ejec_precio = $conn->query($consulta_precio);
+      if (!$conn->query($query_Mover)) {
+        throw new Exception("Error al mover nota: " . $conn->error);
+      }
+      // Insertar las prendas
+      for ($i = 0; $i < count($tipo_prenda); $i++) {
+        $consulta_precio = "SELECT Precio_Unitario FROM precio_prendas WHERE Tipo_Prenda_PK = '" . $tipo_prenda[$i] . "'";
+        $ejec_precio = $conn->query($consulta_precio);
 
-      // Verificar si la consulta fue exitosa
-      if ($ejec_precio) {
-        $precio = $ejec_precio->fetch_assoc();
+        // Verificar si la consulta fue exitosa
+        if ($ejec_precio) {
+          $precio = $ejec_precio->fetch_assoc();
 
-        // Verificar si se encontró el precio
-        if ($precio) {
-          // Obtener el precio unitario de la consulta
-          $precio_unitario = (int) $precio['Precio_Unitario'];
+          // Verificar si se encontró el precio
+          if ($precio) {
+            // Obtener el precio unitario de la consulta
+            $precio_unitario = (int) $precio['Precio_Unitario'];
 
-          // Calcular el precio total
-          $precio_total = $precio_unitario * (int) $numero_prenda[$i];
+            // Calcular el precio total
+            $precio_total = $precio_unitario * (int) $numero_prenda[$i];
 
-          // Insertar los datos en la base de datos
-          $sql_prenda = "INSERT INTO prendas (Folio_Nota_PK_FK, Tipo_Prenda_PK_FK, Color, Cantidad, Precio_Total, Observaciones, Fecha_Entrada, Hora_Entrada) 
-                              VALUES ('$nota_id', '" . $tipo_prenda[$i] . "', '" . $color_prenda[$i] . "', '" . $numero_prenda[$i] . "', $precio_total, 
-                              '" . $notas_adicionales[$i] . "', '$fecha_actual', '$hora_actual')";
-          if (!$conn->query($sql_prenda)) {
-            throw new Exception("Error al insertar prenda: " . $conn->error);
+            // Insertar los datos en la base de datos
+            $sql_prenda = "INSERT INTO prendas (Folio_Nota_PK_FK, Tipo_Prenda_PK_FK, Color, Cantidad, Precio_Total, Observaciones, Fecha_Entrada, Hora_Entrada) 
+                          VALUES ('$nota_id', '" . $tipo_prenda[$i] . "', '" . $color_prenda[$i] . "', '" . $numero_prenda[$i] . "', $precio_total, 
+                          '" . $notas_adicionales[$i] . "', '$fecha_actual', '$hora_actual')";
+            if (!$conn->query($sql_prenda)) {
+              throw new Exception("Error al insertar prenda: " . $conn->error);
+            }
+          } else {
+            throw new Exception("No se encontró el precio para el tipo de prenda especificado.");
           }
         } else {
-          throw new Exception("No se encontró el precio para el tipo de prenda especificado.");
+          throw new Exception("Error al ejecutar la consulta de precio: " . $conn->error);
         }
-      } else {
-        throw new Exception("Error al ejecutar la consulta de precio: " . $conn->error);
       }
     }
+
 
 
     $conn->commit(); // Confirmar transacción
