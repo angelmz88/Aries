@@ -199,18 +199,7 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 break;
         }
 
-        if ($area == 'mostrador' && $area_desde == 'mostrador') {
-            $query_Actualizar = "UPDATE $area_desde SET Fecha_Salida = '$fecha_entrada', Hora_Salida = '$hora_entrada', 
-        Area_Siguiente = '$clave_area', Estatus = 1 WHERE Folio_Nota_PK_FK = '$id'";
-            if ($conn->query($query_Actualizar) === TRUE) {
-                echo '<script>alert("Área actualizada correctamente");';
-                echo 'window.location.href = "buscar.php";';
-                echo '</script>';
-
-            } else {
-                echo '<script>alert("Error al mover: ' . $conn->error . '");</script>';
-            }
-        } else {
+        if ($clave_area != 'M') {
             $query_Mover = "INSERT INTO $area (Folio_Nota_PK_FK, Fecha_Entrada_PK, Hora_Entrada, Estatus, Identificador_Area_FK, Area_Siguiente)
         VALUES ('$id', '$fecha_entrada', '$hora_entrada', 0, '$clave_area', '$clave_siguiente')";
 
@@ -231,10 +220,26 @@ if (isset($_GET['Folio_Nota_PK'])) {
             } else {
                 echo '<script>alert("Error al mover: ' . $conn->error . '");</script>';
             }
+        } else {
+            date_default_timezone_set('America/Mexico_City');
+            $fecha_entrada = date('Y-m-d');
+            $hora_entrada = date('H:i:s');
+            $query_Actualizar = "UPDATE $area_desde SET Fecha_Salida = '$fecha_entrada', Hora_Salida = '$hora_entrada', 
+            Area_Siguiente = '$clave_area', Estatus = 1 WHERE Folio_Nota_PK_FK = '$id'";
+
+            $query_Actualizar_Mostrador = "UPDATE mostrador SET Fecha_Salida = '$fecha_entrada', Hora_Salida = '$hora_entrada', 
+            Area_Siguiente = 'N/A' WHERE Folio_Nota_PK_FK = '$id'";
+
+            if ($conn->query($query_Actualizar) === TRUE && $conn->query($query_Actualizar_Mostrador) === TRUE) {
+                echo '<script>alert("Primer IF entró correctamente");';
+                echo 'window.location.href = "buscar.php";';
+                echo '</script>';
+            } else {
+                echo '<script>alert("Error al mover: ' . $conn->error . '");</script>';
+            }
         }
-
-
     }
+
     ?>
 </body>
 

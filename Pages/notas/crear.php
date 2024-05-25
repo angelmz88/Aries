@@ -129,6 +129,7 @@ include ("notas/../../../php/deep_sesion.php");
 <?php
 include ("notas/../../../php/bd.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  date_default_timezone_set('America/Mexico_City');
   $tel = isset($_POST['tel-clientes']) ? $_POST['tel-clientes'] : null;
   $tipo_servicio = isset($_POST['tipo-servicio']) ? $_POST['tipo-servicio'] : null;
   $tipo_prenda = isset($_POST['tipo-prenda']) ? $_POST['tipo-prenda'] : [];
