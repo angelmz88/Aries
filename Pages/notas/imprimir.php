@@ -105,10 +105,6 @@ $html = '
                 <td>' . htmlspecialchars($nota['Numero_Telefono_Cliente_FK']) . '</td>
             </tr>
             <tr>
-                <th>Teléfono del empleado</th>
-                <td>' . htmlspecialchars($nota['Numero_Telefono_Empleado_FK']) . '</td>
-            </tr>
-            <tr>
                 <th>Tipo de servicio</th>
                 <td>' . htmlspecialchars($nota['Tipo_Servicio']) . '</td>
             </tr>
