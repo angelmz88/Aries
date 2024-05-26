@@ -27,19 +27,19 @@ include ("clientes/../../../php/deep_sesion.php");
   <section class="options">
     <form action="alta.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="text" class="form-control" id="nom-clientes" name="nom-clientes" required />
+        <input type="text" class="form-control nombre" id="nom-clientes" name="nom-clientes" required />
         <label for="nom-clientes">Primer nombre:</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="segundo-nom-clientes" name="segundo-nom-clientes" />
+        <input type="text" class="form-control nombre" id="segundo-nom-clientes" name="segundo-nom-clientes" />
         <label for="segundo-nom-clientes">Segundo nombre (opcional):</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="ap-clientes" name="ap-clientes" required />
+        <input type="text" class="form-control nombre" id="ap-clientes" name="ap-clientes" required />
         <label for="ap-clientes">Primer apellido:</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="segundo-ap-clientes" name="segundo-ap-clientes" required />
+        <input type="text" class="form-control nombre" id="segundo-ap-clientes" name="segundo-ap-clientes" required />
         <label for="segundo-ap-clientes">Segundo apellido:</label>
       </div>
       <div class="form-group">
@@ -47,16 +47,16 @@ include ("clientes/../../../php/deep_sesion.php");
         <label for="calle">Calle:</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="numero" name="numero" required />
+        <input type="text" class="form-control numero-exterior" id="numero" name="numero" required />
         <label for="numero">Número exterior:</label>
       </div>
       <div class="form-group">
-        <input type="tel" id="tel" class="form-control" name="tel" required />
+        <input type="tel" id="tel" class="form-control tel-clientes" name="tel" required />
         <label for="tel">Número de teléfono:</label>
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
-    <!-- <script src="../../JS/registro-nota.js"></script> -->
+    <script src="clientes/../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="../cliente.php" class="btn_salir">Regresar</a>

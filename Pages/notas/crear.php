@@ -27,8 +27,9 @@ include ("notas/../../../php/deep_sesion.php");
   <section class="options">
     <form action="crear.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="tel" class="form-control" name="tel-clientes" required />
+        <input type="tel" class="form-control tel-clientes" name="tel-clientes" required />
         <label for="tel-clientes">Contacto del cliente:</label>
+        <span class="error-message"></span>
       </div>
       <div class="form-group">
         <select class="form-control" name="tipo-servicio" required>
@@ -40,7 +41,6 @@ include ("notas/../../../php/deep_sesion.php");
         </select>
         <label for="tipo-servicio">Tipo de servicio:</label>
       </div>
-
       <div id="prendas-container" class="form-group">
         <div class="prenda form-group">
           <div class="form-group">
@@ -69,8 +69,9 @@ include ("notas/../../../php/deep_sesion.php");
             <label for="tipo-prenda">Tipo de prendas</label>
           </div>
           <div class="form-group">
-            <input type="number" class="form-control" name="numero-prenda[]" required />
+            <input type="number" class="form-control numero-prenda" name="numero-prenda[]" required />
             <label for="numero-prenda">Número de prendas</label>
+            <span class="error-message-prenda"></span>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="color-prenda[]" required />
@@ -87,15 +88,17 @@ include ("notas/../../../php/deep_sesion.php");
       <button type="button" id="add-prenda" class="submit accion">Agregar prenda</button>
 
       <div class="form-group">
-        <input type="date" class="form-control" name="fecha-entrega" required />
+        <input type="date" class="form-control fecha-entrega" name="fecha-entrega" required />
         <label for="fecha-entrega">Fecha de entrega</label>
+        <span class="error-message"></span>
       </div>
       <div class="form-group">
-        <input type="time" class="form-control" name="hora-entrega" required />
+        <input type="time" class="form-control hora-entrega" name="hora-entrega" required />
         <label for="hora-entrega">Hora de entrega (estimada)</label>
       </div>
       <button type="submit" class="submit" onclick="return confirmSubmission()">Guardar</button>
     </form>
+    <script src="notas/../../../JS/registro-nota.js"></script>
     <script>
       document.getElementById('add-prenda').addEventListener('click', function () {
         const container = document.getElementById('prendas-container');
@@ -238,6 +241,7 @@ VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
     echo '</script>';
   }
 }
+
 ?>
 
 </html>
