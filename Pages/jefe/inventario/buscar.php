@@ -139,7 +139,7 @@ $productos = obtenerProductos();
   </section>
   <footer class="footer">
     <a href="../inventario/inventario.php" class="btn_salir">Regresar</a>
-    <a href="../../../../php/salir.php" class="btn_salir">Salir</a>
+    <a href="inventario/../../../../php/salir.php" class="btn_salir">Salir</a>
   </footer>
 </body>
 
