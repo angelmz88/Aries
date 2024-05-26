@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarErrorPrenda(
       input,
       input.value.length > 3
-        ? "El número de prendas debe tener como máximo 3 dígitos."
+        ? "El número debe tener como máximo 3 dígitos."
         : ""
     );
   }
@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("change", establecerRangoHoras);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const numeroInputs = document.querySelectorAll('.numero-exterior');
+document.addEventListener("DOMContentLoaded", function () {
+  const numeroInputs = document.querySelectorAll(".numero-exterior");
 
   // Función para limitar la cantidad de caracteres en los campos de número exterior
   function limitarCaracteres() {
@@ -149,13 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Iterar sobre todos los campos de número exterior y agregar el evento de entrada a cada uno
-  numeroInputs.forEach(function(numeroInput) {
-    numeroInput.addEventListener('input', limitarCaracteres);
+  numeroInputs.forEach(function (numeroInput) {
+    numeroInput.addEventListener("input", limitarCaracteres);
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const nombreInputs = document.querySelectorAll('.nombre');
+document.addEventListener("DOMContentLoaded", function () {
+  const nombreInputs = document.querySelectorAll(".nombre");
 
   // Función para validar la entrada y permitir solo letras en el campo del primer nombre
   function validarNombre(event) {
@@ -167,7 +167,88 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Agregar evento de teclado a cada campo de primer nombre
-  nombreInputs.forEach(function(nombreInput) {
-    nombreInput.addEventListener('keypress', validarNombre);
+  nombreInputs.forEach(function (nombreInput) {
+    nombreInput.addEventListener("keypress", validarNombre);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Obtener el campo de entrada
+  const input = document.querySelector(".numero4");
+
+  // Agregar un listener de eventos para el evento 'input'
+  input.addEventListener("input", (event) => {
+    let valor = event.target.value;
+
+    // Verificar si el valor es negativo
+    if (parseFloat(valor) < 0 || isNaN(parseFloat(valor))) {
+      // Si es negativo, establecer el valor como 0
+      event.target.value = "1";
+      valor = "1"; // Actualizamos la variable valor
+    }
+
+    // Limitar a 4 dígitos
+    if (valor.length > 4) {
+      event.target.value = valor.slice(0, 4);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Obtener el campo de entrada
+  const inputStock = document.getElementById("stock");
+
+  // Agregar un listener de eventos para el evento 'input'
+  inputStock.addEventListener("input", (event) => {
+    let valor = event.target.value;
+
+    // Verificar si el valor es negativo
+    if (parseFloat(valor) < 0 || isNaN(parseFloat(valor))) {
+      // Si es negativo, establecer el valor como 0
+      event.target.value = "1";
+      valor = "1"; // Actualizamos la variable valor
+    }
+
+    // Limitar a 4 dígitos
+    if (valor.length > 4) {
+      event.target.value = valor.slice(0, 4);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Obtener el campo de entrada
+  const input = document.querySelector(".seguro");
+
+  // Agregar un listener de eventos para el evento 'input'
+  input.addEventListener("input", (event) => {
+    let valor = event.target.value;
+
+    // Verificar si el valor es negativo
+    if (parseFloat(valor) < 0 || isNaN(parseFloat(valor))) {
+      // Si es negativo, establecer el valor como 0
+      event.target.value = "1";
+      valor = "1"; // Actualizamos la variable valor
+    }
+
+    // Limitar a 4 dígitos
+    if (valor.length > 11) {
+      event.target.value = valor.slice(0, 11);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Obtener el campo de entrada
+  const inputTelSecundario = document.getElementById("telSecundario");
+
+  // Agregar un listener de eventos para el evento 'input'
+  inputTelSecundario.addEventListener("input", (event) => {
+    let valor = event.target.value;
+
+    // Limitar a 10 dígitos
+    if (valor.length > 10) {
+      event.target.value = valor.slice(0, 10);
+    }
   });
 });

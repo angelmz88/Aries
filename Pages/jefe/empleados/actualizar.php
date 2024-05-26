@@ -49,22 +49,22 @@ if (isset($_GET['Numero_Telefono_PK'])) {
   <section class="options">
     <form action="editar.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="text" id="firstName" name='firstName' class="form-control"
+        <input type="text" id="firstName" name='firstName' class="form-control nombre"
           value="<?php echo $empleado['Primer_Nombre']; ?>" />
         <label for="firstName">Primer nombre</label>
       </div>
       <div class="form-group">
-        <input type="text" id="name" name="name" class="form-control"
+        <input type="text" id="name" name="name" class="form-control nombre"
           value="<?php echo $empleado['Segundo_Nombre']; ?>" />
         <label for="name">Segundo nombre</label>
       </div>
       <div class="form-group">
-        <input type="text" id="secondName" name="secondName" class="form-control"
+        <input type="text" id="secondName" name="secondName" class="form-control nombre"
           value="<?php echo $empleado['Primer_Apellido']; ?>" required />
         <label for="secondName">Apellido paterno</label>
       </div>
       <div class="form-group">
-        <input type="text" id="second" name="second" class="form-control"
+        <input type="text" id="second" name="second" class="form-control nombre"
           value="<?php echo $empleado['Segundo_Apellido']; ?>" required />
         <label for="second">Apellido materno</label>
       </div>
@@ -78,7 +78,7 @@ if (isset($_GET['Numero_Telefono_PK'])) {
         <label for="tipo">Tipo de empleado</label>
       </div>
       <div class="form-group">
-        <input type="number" id="nss" name="nss" class="form-control"
+        <input type="number" id="nss" name="nss" class="form-control seguro"
           value="<?php echo $empleado['Numero_Seguridad_Social']; ?>" required />
         <label for="nss">Número de seguridad social</label>
       </div>
@@ -98,7 +98,7 @@ if (isset($_GET['Numero_Telefono_PK'])) {
         <label for="nomina">Tipo de nomina</label>
       </div>
       <div class="form-group">
-        <input type="tel" id="tel" name="tel" class="form-control"
+        <input type="tel" id="tel" name="tel" class="form-control tel-clientes"
           value="<?php echo $empleado['Numero_Telefono_PK']; ?>" required />
         <label for="tel">Telefono</label>
       </div>
@@ -118,7 +118,7 @@ if (isset($_GET['Numero_Telefono_PK'])) {
       </div>
       <button type="submit" class="submit">Actualizar</button>
     </form>
-    <script src="../../JS/registro-nota.js"></script>
+    <script src="empleados/../../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="buscar.php" class="btn_salir">Regresar</a>

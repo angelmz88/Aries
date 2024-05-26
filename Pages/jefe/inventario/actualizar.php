@@ -62,7 +62,7 @@ if (isset($_GET['Clave_Producto_PK'])) {
         <label for="nom">Nombre del Producto</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="num" name="num" value="<?php echo $producto['Piezas']; ?>"
+        <input type="number" class="form-control numero4" id="num" name="num" value="<?php echo $producto['Piezas']; ?>"
           required />
         <label for="num">Número de piezas</label>
       </div>
@@ -90,7 +90,7 @@ if (isset($_GET['Clave_Producto_PK'])) {
         <label for="precio">Precio unitario</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="stock" name="stock"
+        <input type="number" class="form-control numero4" id="stock" name="stock"
           value="<?php echo $producto['Stock_Minimo']; ?>" required />
         <label for="stock">Stock minimo para las alertas</label>
       </div>
@@ -105,6 +105,7 @@ if (isset($_GET['Clave_Producto_PK'])) {
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
+    <script src="inventario/../../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="buscar.php" class="btn_salir">Regresar</a>

@@ -56,12 +56,12 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
         <label for="nombre_mostrar">Nombre</label>
       </div>
       <div class="form-group">
-        <input type="tel" class="form-control" id="telPrincipal" name="telPrincipal"
+        <input type="tel" class="form-control tel-clientes" id="telPrincipal" name="telPrincipal"
           value="<?php echo $proveedor['Telefono_Principal']; ?>" required />
         <label for="telPrincipal">Teléfono principal</label>
       </div>
       <div class="form-group">
-        <input type="tel" class="form-control" id="telSecundario" name="telSecundario"
+        <input type="tel" class="form-control tel-clientes" id="telSecundario" name="telSecundario"
           value="<?php echo $proveedor['Telefono_Alterno']; ?>" required />
         <label for="telSecundario">Teléfono secundario</label>
       </div>
@@ -95,8 +95,8 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
         <label for="calle">Calle</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="num" name="num" value="<?php echo $proveedor['Numero_Exterior']; ?>"
-          required />
+        <input type="text" class="form-control numero-exterior" id="num" name="num"
+          value="<?php echo $proveedor['Numero_Exterior']; ?>" required />
         <label for="num">Número</label>
       </div>
       <div class="form-group">
@@ -105,8 +105,8 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
         <label for="colonia">Colonia</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="cp" name="cp" value="<?php echo $proveedor['Codigo_Postal']; ?>"
-          required />
+        <input type="number" class="form-control numero-exterior" id="cp" name="cp"
+          value="<?php echo $proveedor['Codigo_Postal']; ?>" required />
         <label for="cp">Código postal</label>
       </div>
       <div class="form-group">
@@ -130,6 +130,7 @@ if (isset($_GET['Nombre_Distribuidora_PK'])) {
       </div>
       <button type="submit" class="submit">Actualizar</button>
     </form>
+    <script src="proveedores/../../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="buscar.php" class="btn_salir">Regresar</a>

@@ -62,7 +62,7 @@ ob_start(); // Iniciar almacenamiento en búfer de salida
             <label for="producto">Producto</label>
           </div>
           <div class="form-group">
-            <input type="number" class="form-control" name="num-piezas[]" required />
+            <input type="number" class="form-control numero4" name="num-piezas[]" required />
             <label for="num-piezas">Número de piezas</label>
           </div>
           <button type="button" class="remove-producto submit">Quitar producto</button>
@@ -71,6 +71,7 @@ ob_start(); // Iniciar almacenamiento en búfer de salida
       <button type="button" id="add-producto" class="submit accion">Agregar producto</button>
       <button type="submit" class="submit">Guardar</button>
     </form>
+    <script src="inventario/../../../../JS/registro-nota.js"></script>
     <script>
       document.getElementById('add-producto').addEventListener('click', function () {
         const container = document.getElementById('productos-container');

@@ -26,19 +26,19 @@ include ("empleados/../../../../php/final_sesion.php");
   <section class="options">
     <form action="crear.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="text" id="firstName" name='firstName' class="form-control" />
+        <input type="text" id="firstName" name='firstName' class="form-control nombre" />
         <label for="firstName">Primer nombre</label>
       </div>
       <div class="form-group">
-        <input type="text" id="name" name="name" class="form-control" />
+        <input type="text" id="name" name="name" class="form-control nombre" />
         <label for="name">Segundo nombre</label>
       </div>
       <div class="form-group">
-        <input type="text" id="secondName" name="secondName" class="form-control" required />
+        <input type="text" id="secondName" name="secondName" class="form-control nombre" required />
         <label for="secondName">Apellido paterno</label>
       </div>
       <div class="form-group">
-        <input type="text" id="second" name="second" class="form-control" required />
+        <input type="text" id="second" name="second" class="form-control nombre" required />
         <label for="second">Apellido materno</label>
       </div>
       <div class="form-group">
@@ -49,7 +49,7 @@ include ("empleados/../../../../php/final_sesion.php");
         <label for="tipo">Tipo de empleado</label>
       </div>
       <div class="form-group">
-        <input type="number" id="nss" name="nss" class="form-control" required />
+        <input type="number" id="nss" name="nss" class="form-control seguro" required />
         <label for="nss">Número de seguridad social</label>
       </div>
       <div class="form-group">
@@ -64,7 +64,7 @@ include ("empleados/../../../../php/final_sesion.php");
         <label for="nomina">Tipo de nomina</label>
       </div>
       <div class="form-group">
-        <input type="tel" id="tel" name="tel" class="form-control" required />
+        <input type="tel" id="tel" name="tel" class="form-control tel-clientes" required />
         <label for="tel">Telefono</label>
       </div>
       <div class="form-group">
@@ -80,7 +80,7 @@ include ("empleados/../../../../php/final_sesion.php");
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
-    <script src="../../JS/registro-nota.js"></script>
+    <script src="empleados/../../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="../empleados/empleados.php" class="btn_salir">Regresar</a>

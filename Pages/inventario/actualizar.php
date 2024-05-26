@@ -61,7 +61,8 @@ if (isset($_GET['Clave_Producto_PK'])) {
         <label for="nom">Nombre del Producto</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="num" name="num" value="<?php echo $producto['Piezas']; ?>" />
+        <input type="number" class="form-control numero4" id="num" name="num"
+          value="<?php echo $producto['Piezas']; ?>" />
         <label for="num">Número de piezas</label>
       </div>
       <div class="form-group">

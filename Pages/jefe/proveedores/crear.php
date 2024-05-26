@@ -30,11 +30,11 @@ include ("proveedores/../../../../php/final_sesion.php");
         <label for="nombre">Nombre</label>
       </div>
       <div class="form-group">
-        <input type="tel" class="form-control" id="telPrincipal" name="telPrincipal" required />
+        <input type="tel" class="form-control tel-clientes" id="telPrincipal" name="telPrincipal" required />
         <label for="telPrincipal">Teléfono principal</label>
       </div>
       <div class="form-group">
-        <input type="tel" class="form-control" id="telSecundario" name="telSecundario" required />
+        <input type="tel" class="form-control tel-clientes" id="telSecundario" name="telSecundario" required />
         <label for="telSecundario">Teléfono secundario</label>
       </div>
       <div class="form-group">
@@ -58,7 +58,7 @@ include ("proveedores/../../../../php/final_sesion.php");
         <label for="calle">Calle</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="num" name="num" required />
+        <input type="text" class="form-control numero-exterior" id="num" name="num" required />
         <label for="num">Número</label>
       </div>
       <div class="form-group">
@@ -66,7 +66,7 @@ include ("proveedores/../../../../php/final_sesion.php");
         <label for="colonia">Colonia</label>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="cp" name="cp" required />
+        <input type="number" class="form-control numero-exterior" id="cp" name="cp" required />
         <label for="cp">Código postal</label>
       </div>
       <div class="form-group">
@@ -86,6 +86,7 @@ include ("proveedores/../../../../php/final_sesion.php");
       </div>
       <button type="submit" class="submit">Guardar</button>
     </form>
+    <script src="proveedores/../../../../JS/registro-nota.js"></script>
   </section>
   <footer class="footer">
     <a href="../proveedores/proveedores.php" class="btn_salir">Regresar</a>
