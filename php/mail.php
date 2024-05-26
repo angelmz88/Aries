@@ -12,11 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo $id;
 
-    $query_stock = "SELECT Stock_Minimo FROM Productos WHERE Clave_Producto_PK = '900087'";
+    $query_stock = "SELECT Stock_Minimo FROM Productos WHERE Clave_Producto_PK = '$id'";
     $result_stock = $conn->query($query_stock);
     $stock_Producto = $result_stock->fetch_assoc()['Stock_Minimo'];
 
-    $query_Nombre = "SELECT Nombre_Producto, Piezas FROM Productos WHERE Clave_Producto_PK = '900087'";
+    $query_Nombre = "SELECT Nombre_Producto, Piezas FROM Productos WHERE Clave_Producto_PK = '$id'";
     $result_Nombre = $conn->query($query_Nombre);
     $producto = $result_Nombre->fetch_assoc();
     $nombre_Producto = $producto['Nombre_Producto'];

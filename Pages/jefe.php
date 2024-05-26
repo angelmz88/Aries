@@ -41,7 +41,7 @@ $nombre = (string) $row['Primer_Nombre'];
   </header>
   <section class="hero">
     <div class="hero-cover">
-      <h1>¡Bienvenido <?php echo "$nombre" ?>!</h1>
+      <h1>¡Bienvenid@ <?php echo "$nombre" ?>!</h1>
       <h2>¿Qué deseas consultar hoy?</h2>
     </div>
   </section>

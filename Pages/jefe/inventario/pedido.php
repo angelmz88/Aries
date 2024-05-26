@@ -1,7 +1,14 @@
 <?php
 include ("empleados/../../../../php/final_sesion.php");
 include ("empleados/../../../../php/bd.php");
+require 'empleados/../../../../pdf/vendor/autoload.php';
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+ob_start(); // Iniciar almacenamiento en búfer de salida
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -94,21 +101,21 @@ include ("empleados/../../../../php/bd.php");
     <a href="inventario/../../../../php/salir.php" class="btn_salir">Salir</a>
   </footer>
 </body>
+
 <?php
 include ("inventario/../../../../php/bd.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre_distribuidora = trim($_POST['proveedor'][0]); // Asumiendo que solo hay un proveedor
+  $nombre_distribuidora = trim($_POST['proveedor'][0]);
   $productos = isset($_POST['producto']) ? array_map('trim', $_POST['producto']) : [];
   $numero_piezas = isset($_POST['num-piezas']) ? $_POST['num-piezas'] : [];
-  $provisional = 1;
+  $provisional = 0;
   $fecha_actual = date('Y-m-d');
 
-  $conn->begin_transaction(); // Iniciar transacción
+  $conn->begin_transaction();
 
   try {
-    // Insertar información de la nota con Total_Pagar inicializado a 0
-    $sql_nota = "INSERT INTO pedidos (Nombre_Distribuidora_PK_FK, Fecha_Pedido, Total_Pagar) VALUES (?, ?, 1)";
+    $sql_nota = "INSERT INTO pedidos (Nombre_Distribuidora_PK_FK, Fecha_Pedido, Total_Pagar) VALUES (?, ?, 0)";
     $stmt_nota = $conn->prepare($sql_nota);
     $stmt_nota->bind_param("ss", $nombre_distribuidora, $fecha_actual);
 
@@ -116,9 +123,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       throw new Exception("Error al insertar nota: " . $stmt_nota->error);
     }
 
-    $nota_id = $stmt_nota->insert_id; // Obtener el ID de la nota insertada
+    $nota_id = $stmt_nota->insert_id;
 
-    // Insertar los productos
+    $detalle_pedidos = [];
+
     for ($i = 0; $i < count($productos); $i++) {
       $producto_actual = $productos[$i];
 
@@ -134,28 +142,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($result_precio->num_rows > 0) {
         $row_precio = $result_precio->fetch_assoc();
         $precio_unitario = (int) $row_precio['Precio_Unitario'];
-        $id_prenda = trim($row_precio['Clave_Producto_PK']); // Tratar la clave del producto como string
+        $id_prenda = trim($row_precio['Clave_Producto_PK']);
 
-        // Calcular el precio total
         $precio_total = $precio_unitario * (int) $numero_piezas[$i];
         $provisional += $precio_total;
 
-        // Insertar los datos en la base de datos
         $sql_prenda = "INSERT INTO detalles_pedidos (Numero_Pedido_PK_FK, Identificador_Producto_PK_FK, Cantidad_Producto) 
                        VALUES (?, ?, ?)";
         $stmt_prenda = $conn->prepare($sql_prenda);
-        $stmt_prenda->bind_param("isi", $nota_id, $id_prenda, $numero_piezas[$i]); // Usar "isi" para tratar la clave como string
+        $stmt_prenda->bind_param("isi", $nota_id, $id_prenda, $numero_piezas[$i]);
 
         if (!$stmt_prenda->execute()) {
           throw new Exception("Error al insertar producto: " . $stmt_prenda->error);
         }
+
+        $detalle_pedidos[] = [
+          'Nombre_Producto' => $producto_actual,
+          'Cantidad' => $numero_piezas[$i],
+          'Precio_Unitario' => $precio_unitario,
+          'Precio_Total' => $precio_total
+        ];
       } else {
-        echo "No se encontró el precio para el producto especificado: " . $producto_actual . "<br>";
         throw new Exception("No se encontró el precio para el producto especificado: " . $producto_actual);
       }
     }
 
-    // Actualizar el total a pagar en la tabla pedidos
     $sql_update_total = "UPDATE pedidos SET Total_Pagar = ? WHERE Numero_Pedido_PK = ?";
     $stmt_update_total = $conn->prepare($sql_update_total);
     $stmt_update_total->bind_param("ii", $provisional, $nota_id);
@@ -164,13 +175,94 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       throw new Exception("Error al actualizar el total a pagar: " . $stmt_update_total->error);
     }
 
-    $conn->commit(); // Confirmar transacción
+    $conn->commit();
+
+    // Crear el contenido HTML para el PDF
+    $html = '
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pedido ' . htmlspecialchars($nota_id) . '</title>
+        <style>
+            body { font-family: Arial, sans-serif; }
+            .container { width: 100%; max-width: 800px; margin: 0 auto; }
+            h1 { text-align: center; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            table, th, td { border: 1px solid black; }
+            th, td { padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Pedido ' . htmlspecialchars($nota_id) . '</h1>
+            <table>
+                <tr>
+                    <th>Número de Pedido</th>
+                    <td>' . htmlspecialchars($nota_id) . '</td>
+                </tr>
+                <tr>
+                    <th>Distribuidora</th>
+                    <td>' . htmlspecialchars($nombre_distribuidora) . '</td>
+                </tr>
+                <tr>
+                    <th>Fecha</th>
+                    <td>' . htmlspecialchars($fecha_actual) . '</td>
+                </tr>
+            </table>
+            <h2>Productos</h2>
+            <table>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Precio Total</th>
+                </tr>';
+
+    foreach ($detalle_pedidos as $detalle) {
+      $html .= '
+                <tr>
+                    <td>' . htmlspecialchars($detalle['Nombre_Producto']) . '</td>
+                    <td>' . htmlspecialchars($detalle['Cantidad']) . '</td>
+                    <td>' . htmlspecialchars($detalle['Precio_Unitario']) . '</td>
+                    <td>' . htmlspecialchars($detalle['Precio_Total']) . '</td>
+                </tr>';
+    }
+
+    $html .= '
+                <tr>
+                    <th colspan="3">Total a Pagar</th>
+                    <td>' . htmlspecialchars($provisional) . '</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    </html>';
+
+    // Inicializar Dompdf
+    $options = new Options();
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isRemoteEnabled', true);
+
+    $dompdf = new Dompdf($options);
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    ob_end_clean(); // Limpiar cualquier salida antes de enviar el PDF
+
+    // Enviar el PDF al navegador
+    $dompdf->stream('pedido_' . $fecha_actual . '_' . $nota_id . '.pdf', array("Attachment" => TRUE));
+
     echo '<script>';
     echo 'alert("Pedido y productos registrados correctamente.");';
     // echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
     echo '</script>';
   } catch (Exception $e) {
-    $conn->rollback(); // Revertir transacción en caso de error
+    $conn->rollback();
+    ob_end_clean(); // Limpiar el búfer en caso de error también
     echo '<script>';
     echo 'alert("Error al registrar nota y productos: ' . $e->getMessage() . '");';
     echo '</script>';
