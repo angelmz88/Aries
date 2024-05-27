@@ -70,9 +70,10 @@ if (isset($_GET['Numero_Telefono_PK'])) {
       </div>
       <div class="form-group">
         <select class="form-control" id="tipo" name="tipo" required>
-          <option value="Empleado" <?php if ($empleado['Tipo'] == 'Empleado')
-            echo 'selected'; ?>>Empleado</option>
-          <option value="Jefe" <?php if ($empleado['Tipo'] == 'Jefe')
+          <option value="Empleado" <?php if ($empleado['Tipo_Empleado'] == 'Empleado')
+            echo 'selected'; ?>>Empleado
+          </option>
+          <option value="Jefe" <?php if ($empleado['Tipo_Empleado'] == 'Jefe')
             echo 'selected'; ?>>Jefe</option>
         </select>
         <label for="tipo">Tipo de empleado</label>
