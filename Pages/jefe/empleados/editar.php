@@ -1,4 +1,5 @@
 <?php
+include ("empleados/../../../../php/final_sesion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include ("empleados/../../../../php/bd.php");
     $numTelPk = $_POST['tel'];

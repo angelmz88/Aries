@@ -1,7 +1,7 @@
 <?php
 include ("empleados/../../../../php/final_sesion.php");
 include ("empleados/../../../../php/bd.php");
-require 'empleados/../../../../pdf/vendor/autoload.php';
+require 'empleados/../../../../vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

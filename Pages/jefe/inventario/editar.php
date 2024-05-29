@@ -1,4 +1,5 @@
 <?php
+include ("inventario/../../../../php/final_sesion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $claveProducto = $_POST['clave'];
     $nombreProducto = $_POST['nom'];

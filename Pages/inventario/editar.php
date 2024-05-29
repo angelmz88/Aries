@@ -1,4 +1,5 @@
 <?php
+include ("inventario/../../../php/deep_sesion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $claveProducto = $_POST['clave'];
     $piezasReducir = intval($_POST['num']); // Asegurarse de que es un número entero

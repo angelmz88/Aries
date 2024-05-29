@@ -1,4 +1,5 @@
 <?php
+include ("inventario/../../../php/deep_sesion.php");
 // Recibimos los datos del formulario
 $clave = $_POST['clave'];
 

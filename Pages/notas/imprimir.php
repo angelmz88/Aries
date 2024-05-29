@@ -1,7 +1,7 @@
 <?php
 include ("notas/../../../php/deep_sesion.php");
 include ("notas/../../../php/bd.php");
-require 'notas/../../../pdf/vendor/autoload.php';
+require 'notas/../../../vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

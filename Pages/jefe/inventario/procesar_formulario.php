@@ -1,4 +1,5 @@
 <?php
+include ("inventario/../../../../php/final_sesion.php");
 // Recibimos los datos del formulario
 $clave = $_POST['clave'];
 

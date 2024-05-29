@@ -1,4 +1,5 @@
 <?php
+include ("proveedores/../../../../php/final_sesion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include ("proveedores/../../../../php/bd.php");
     $nom = $_POST['nombre'];
