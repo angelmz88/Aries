@@ -17,16 +17,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $retorno = $conn->query($validacion);
         $row = $retorno->fetch_assoc();
         $tipo = (string) $row['Tipo_Empleado'];
+
+        $validacion_vigente = "SELECT Vigente FROM empleados where Numero_Seguridad_Social = '$username'";
+        $retorno_vigente = $conn->query($validacion_vigente);
+        $row_vigente = $retorno_vigente->fetch_assoc();
+        $vigente = $row_vigente['Vigente'];
         // El usuario ha iniciado sesión correctamente
-        $_SESSION["username"] = $username; // Establecer una variable de sesión para indicar que el usuario ha iniciado sesión
-        echo "Inicio de sesión exitoso. ¡Bienvenido!";
-        echo $tipo;
+        $_SESSION["username"] = $username; // Establecer una variable de sesión para indicar que el usuario ha iniciado sesión;
         // Redirigir a otra página
 
-        if ($tipo == 'Jefe') {
+        if ($tipo == 'Jefe' && $vigente == 1) {
             header("Location: ../Pages/jefe.php");
-        } elseif ($tipo == 'Empleado') {
+        } elseif ($tipo == 'Empleado' && $vigente == 1) {
             header("Location: ../Pages/empleado.php");
+        } else {
+            echo '<script>';
+            echo 'alert("Usuario no vigente. Contacta al jefe de sucursal.");';
+            echo 'window.location.href = "../index.php";'; // Redirige a otra_pagina.php después de que el usuario haga clic en "Aceptar"
+            echo '</script>';
         }
         exit(); // Asegúrate de salir del script después de la redirección
     } else {
