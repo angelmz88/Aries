@@ -292,6 +292,33 @@ if (isset($_GET['Folio_Nota_PK'])) {
         </table>
     </section>
     <section class="form-register options">
+        <h3>Glosario</h3>
+        <div>
+            <table>
+                <tr>
+                    <th>Abrevación</th>
+                    <th>Significado</th>
+                </tr>
+                <tr>
+                    <td>PL</td>
+                    <td>Planchado</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>Mostrador</td>
+                </tr>
+                <tr>
+                    <td>P</td>
+                    <td>Planta</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>Lavado</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section class="form-register options">
         <h3>Opciones</h3>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?Folio_Nota_PK=' . urlencode($id)); ?>"
             method="POST" class="form">
