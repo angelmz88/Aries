@@ -45,26 +45,26 @@ include ("notas/../../../php/deep_sesion.php");
         <div class="prenda form-group">
           <div class="form-group">
             <select class="form-control" name="tipo-prenda[]" required>
-              <option value="Pantalon">Pantalon</option>
-              <option value="Sudadera">Sudadera</option>
-              <option value="Saco">Saco</option>
-              <option value="Traje">Traje</option>
-              <option value="Abrigo">Abrigo</option>
-              <option value="Chamarra">Chamarra</option>
-              <option value="Vestido de noche">Vestido de noche</option>
-              <option value="Playera">Playera</option>
-              <option value="Blusa">Blusa</option>
-              <option value="Camisa">Camisa</option>
-              <option value="Edredon">Edredon</option>
-              <option value="Cobija">Cobija</option>
-              <option value="Cobertor">Cobertor</option>
-              <option value="Chaleco">Chaleco</option>
-              <option value="Capa">Capa</option>
-              <option value="Gabardina">Gabardina</option>
-              <option value="Falda">Falda</option>
-              <option value="Corbata">Corbata</option>
-              <option value="Pans">Pans</option>
-              <option value="Chalinas">Chalinas</option>
+              <option value="Pantalon ">Pantalon</option>
+              <option value="Sudadera ">Sudadera</option>
+              <option value="Saco ">Saco</option>
+              <option value="Traje ">Traje</option>
+              <option value="Abrigo ">Abrigo</option>
+              <option value="Chamarra ">Chamarra</option>
+              <option value="Vestido de noche ">Vestido de noche</option>
+              <option value="Playera ">Playera</option>
+              <option value="Blusa ">Blusa</option>
+              <option value="Camisa ">Camisa</option>
+              <option value="Edredon ">Edredon</option>
+              <option value="Cobija ">Cobija</option>
+              <option value="Cobertor ">Cobertor</option>
+              <option value="Chaleco ">Chaleco</option>
+              <option value="Capa ">Capa</option>
+              <option value="Gabardina ">Gabardina</option>
+              <option value="Falda ">Falda</option>
+              <option value="Corbata ">Corbata</option>
+              <option value="Pans ">Pans</option>
+              <option value="Chalinas ">Chalinas</option>
             </select>
             <label for="tipo-prenda">Tipo de prendas</label>
           </div>
