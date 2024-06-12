@@ -45,26 +45,26 @@ include ("notas/../../../php/deep_sesion.php");
         <div class="prenda form-group">
           <div class="form-group">
             <select class="form-control" name="tipo-prenda[]" required>
-              <option value="Pantalon ">Pantalon</option>
-              <option value="Sudadera ">Sudadera</option>
-              <option value="Saco ">Saco</option>
-              <option value="Traje ">Traje</option>
-              <option value="Abrigo ">Abrigo</option>
-              <option value="Chamarra ">Chamarra</option>
-              <option value="Vestido de noche ">Vestido de noche</option>
-              <option value="Playera ">Playera</option>
-              <option value="Blusa ">Blusa</option>
-              <option value="Camisa ">Camisa</option>
-              <option value="Edredon ">Edredon</option>
-              <option value="Cobija ">Cobija</option>
-              <option value="Cobertor ">Cobertor</option>
-              <option value="Chaleco ">Chaleco</option>
-              <option value="Capa ">Capa</option>
-              <option value="Gabardina ">Gabardina</option>
-              <option value="Falda ">Falda</option>
-              <option value="Corbata ">Corbata</option>
-              <option value="Pans ">Pans</option>
-              <option value="Chalinas ">Chalinas</option>
+              <option value="Pantalon">Pantalon</option>
+              <option value="Sudadera">Sudadera</option>
+              <option value="Saco">Saco</option>
+              <option value="Traje">Traje</option>
+              <option value="Abrigo">Abrigo</option>
+              <option value="Chamarra">Chamarra</option>
+              <option value="Vestido de noche">Vestido de noche</option>
+              <option value="Playera">Playera</option>
+              <option value="Blusa">Blusa</option>
+              <option value="Camisa">Camisa</option>
+              <option value="Edredon">Edredon</option>
+              <option value="Cobija">Cobija</option>
+              <option value="Cobertor">Cobertor</option>
+              <option value="Chaleco">Chaleco</option>
+              <option value="Capa">Capa</option>
+              <option value="Gabardina">Gabardina</option>
+              <option value="Falda">Falda</option>
+              <option value="Corbata">Corbata</option>
+              <option value="Pans">Pans</option>
+              <option value="Chalinas">Chalinas</option>
             </select>
             <label for="tipo-prenda">Tipo de prendas</label>
           </div>
@@ -232,13 +232,19 @@ VALUES ('$nota_id', '$fecha_actual', '$hora_actual', 0, 'M', '$clave_area')";
     $conn->commit(); // Confirmar transacción
     echo '<script>';
     echo 'alert("Nota y prendas registradas correctamente. Folio de nota: ' . $nota_id . ' Precio total: ' . $precio_total . ' ");';
-    // echo 'window.location.href = "../notas.php";'; // Redirige después de éxito
     echo '</script>';
   } catch (Exception $e) {
     $conn->rollback(); // Revertir transacción en caso de error
-    echo '<script>';
-    echo 'alert("' . $e->getMessage() . '");';
-    echo '</script>';
+    $error_message = $e->getMessage();
+    if (strpos($error_message, 'Cannot add or update a child row: a foreign key constraint fails') !== false && strpos($error_message, 'Telefono_Clientes_Notas') !== false) {
+      echo '<script>';
+      echo 'alert("El contacto de usuario no coincide con ningún registro, favor de registrarlo.");';
+      echo '</script>';
+    } else {
+      echo '<script>';
+      echo 'alert("' . $error_message . '");';
+      echo '</script>';
+    }
   }
 }
 
