@@ -26,7 +26,7 @@ include ("empleados/../../../../php/final_sesion.php");
   <section class="options">
     <form action="crear.php" id="form-register" method="post" class="form">
       <div class="form-group">
-        <input type="text" id="firstName" name='firstName' class="form-control nombre" />
+        <input type="text" id="firstName" name='firstName' class="form-control nombre" required />
         <label for="firstName">Primer nombre</label>
       </div>
       <div class="form-group">
@@ -98,7 +98,7 @@ include ("empleados/../../../../php/final_sesion.php");
     $salario = $_POST['salary'];
     $nomina = $_POST['nomina'];
     $estatus = $_POST['estatus'];
-    $tipo = $_POST['ipo'];
+    $tipo = $_POST['tipo'];
 
     include ("empleados/../../../../php/bd.php");
 

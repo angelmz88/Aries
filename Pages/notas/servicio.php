@@ -6,7 +6,7 @@ include ("notas/../../../php/bd.php");
 function obtenerexternos($term = '')
 {
   global $conn;
-  $sql = "SELECT * FROM tenido_reparacion";
+  $sql = "SELECT *, CASE WHEN Estatus = 0 THEN 'en progreso' ELSE 'completado' END AS Estado FROM tenido_reparacion";
   if ($term != '') {
     $sql .= " WHERE Folio_Nota_PK_FK LIKE '%$term%' OR Cantidad_Prendas_PK LIKE '%$term%' OR Tipo_Servicio LIKE '%$term%' 
     OR Telefono_Colaborador_FK LIKE '%$term%' OR Estatus LIKE '%$term%'";
@@ -65,7 +65,7 @@ $externos = obtenerexternos();
             if (data.length > 0) {
               $.each(data, function (index, externo) {
                 tableContent += '<tr><td>' + externo.Folio_externo_PK + '</td><td>' + externo.Tipo_Servicio + '</td><td>' + externo.Telefono_Colaborador_FK +
-                  '</td><td>' + externo.Estatus + '</td></tr>';
+                  '</td><td>' + externo.Estado + '</td></tr>';
               });
             } else {
               tableContent += '<tr><td colspan="6">No se encontraron resultados</td></tr>';
@@ -88,7 +88,7 @@ $externos = obtenerexternos();
   </header>
   <section class="hero">
     <div class="hero-cover">
-      <h1>CONSULTAR externoS</h1>
+      <h1>CONSULTAR EXTERNOS</h1>
     </div>
   </section>
   <section class="options">
@@ -110,7 +110,7 @@ $externos = obtenerexternos();
             <td><?php echo $externo["Folio_Nota_PK_FK"]; ?></td>
             <td><?php echo $externo["Tipo_Servicio"]; ?></td>
             <td><?php echo $externo["Telefono_Colaborador_FK"]; ?></td>
-            <td><?php echo $externo["Estatus"]; ?></td>
+            <td><?php echo $externo["Estado"]; ?></td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>

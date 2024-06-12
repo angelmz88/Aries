@@ -109,7 +109,34 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 </td>
                 <td><?php echo isset($row_Lavado['Area_Siguiente']) ? htmlspecialchars($row_Lavado['Area_Siguiente']) : "Sin registro"; ?>
                 </td>
-                <td><?php echo isset($row_Lavado['Estatus']) ? htmlspecialchars($row_Lavado['Estatus']) : "Sin registro"; ?>
+                <td style="color:
+        <?php
+        if (isset($row_Lavado['Estatus'])) {
+            if ($row_Lavado['Estatus'] == 0) {
+                echo 'red'; // Si el estatus es 0, color rojo
+            } elseif ($row_Lavado['Estatus'] == 1) {
+                echo 'green'; // Si el estatus es 1, color verde
+            } else {
+                echo 'blue'; // Otro caso, color azul
+            }
+        } else {
+            echo 'blue'; // Si no tiene valor, color azul
+        }
+        ?>;
+    ">
+                    <?php
+                    if (isset($row_Lavado['Estatus'])) {
+                        if ($row_Lavado['Estatus'] == 0) {
+                            echo "En progreso"; // Si el estatus es 0, muestra "En progreso"
+                        } elseif ($row_Lavado['Estatus'] == 1) {
+                            echo "Completado"; // Si el estatus es 1, muestra "Completado"
+                        } else {
+                            echo "Sin registro"; // Otro caso, muestra "Sin registro"
+                        }
+                    } else {
+                        echo "Sin registro"; // Si no tiene valor, muestra "Sin registro"
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -124,7 +151,34 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 </td>
                 <td><?php echo isset($row_Planta['Area_Siguiente']) ? htmlspecialchars($row_Planta['Area_Siguiente']) : "Sin registro"; ?>
                 </td>
-                <td><?php echo isset($row_Planta['Estatus']) ? htmlspecialchars($row_Planta['Estatus']) : "Sin registro"; ?>
+                <td style="color:
+        <?php
+        if (isset($row_Planta['Estatus'])) {
+            if ($row_Planta['Estatus'] == 0) {
+                echo 'red'; // Si el estatus es 0, color rojo
+            } elseif ($row_Planta['Estatus'] == 1) {
+                echo 'green'; // Si el estatus es 1, color verde
+            } else {
+                echo 'blue'; // Otro caso, color azul
+            }
+        } else {
+            echo 'blue'; // Si no tiene valor, color azul
+        }
+        ?>;
+    ">
+                    <?php
+                    if (isset($row_Planta['Estatus'])) {
+                        if ($row_Planta['Estatus'] == 0) {
+                            echo "En progreso"; // Si el estatus es 0, muestra "En progreso"
+                        } elseif ($row_Planta['Estatus'] == 1) {
+                            echo "Completado"; // Si el estatus es 1, muestra "Completado"
+                        } else {
+                            echo "Sin registro"; // Otro caso, muestra "Sin registro"
+                        }
+                    } else {
+                        echo "Sin registro"; // Si no tiene valor, muestra "Sin registro"
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -139,7 +193,34 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 </td>
                 <td><?php echo isset($row_Planchado['Area_Siguiente']) ? htmlspecialchars($row_Planchado['Area_Siguiente']) : "Sin registro"; ?>
                 </td>
-                <td><?php echo isset($row_Planchado['Estatus']) ? htmlspecialchars($row_Planchado['Estatus']) : "Sin registro"; ?>
+                <td style="color:
+        <?php
+        if (isset($row_Planchado['Estatus'])) {
+            if ($row_Planchado['Estatus'] == 0) {
+                echo 'red'; // Si el estatus es 0, color rojo
+            } elseif ($row_Planchado['Estatus'] == 1) {
+                echo 'green'; // Si el estatus es 1, color verde
+            } else {
+                echo 'blue'; // Otro caso, color azul
+            }
+        } else {
+            echo 'blue'; // Si no tiene valor, color azul
+        }
+        ?>;
+    ">
+                    <?php
+                    if (isset($row_Planchado['Estatus'])) {
+                        if ($row_Planchado['Estatus'] == 0) {
+                            echo "En progreso"; // Si el estatus es 0, muestra "En progreso"
+                        } elseif ($row_Planchado['Estatus'] == 1) {
+                            echo "Completado"; // Si el estatus es 1, muestra "Completado"
+                        } else {
+                            echo "Sin registro"; // Otro caso, muestra "Sin registro"
+                        }
+                    } else {
+                        echo "Sin registro"; // Si no tiene valor, muestra "Sin registro"
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -154,7 +235,34 @@ if (isset($_GET['Folio_Nota_PK'])) {
                 </td>
                 <td><?php echo isset($row_Mostrador['Area_Siguiente']) ? htmlspecialchars($row_Mostrador['Area_Siguiente']) : "Sin registro"; ?>
                 </td>
-                <td><?php echo isset($row_Mostrador['Estatus']) ? htmlspecialchars($row_Mostrador['Estatus']) : "Sin registro"; ?>
+                <td style="color:
+        <?php
+        if (isset($row_Mostrador['Estatus'])) {
+            if ($row_Mostrador['Estatus'] == 0) {
+                echo 'red'; // Si el estatus es 0, color rojo
+            } elseif ($row_Mostrador['Estatus'] == 1) {
+                echo 'green'; // Si el estatus es 1, color verde
+            } else {
+                echo 'blue'; // Otro caso, color azul
+            }
+        } else {
+            echo 'blue'; // Si no tiene valor, color azul
+        }
+        ?>;
+    ">
+                    <?php
+                    if (isset($row_Mostrador['Estatus'])) {
+                        if ($row_Mostrador['Estatus'] == 0) {
+                            echo "En progreso"; // Si el estatus es 0, muestra "En progreso"
+                        } elseif ($row_Mostrador['Estatus'] == 1) {
+                            echo "Completado"; // Si el estatus es 1, muestra "Completado"
+                        } else {
+                            echo "Sin registro"; // Otro caso, muestra "Sin registro"
+                        }
+                    } else {
+                        echo "Sin registro"; // Si no tiene valor, muestra "Sin registro"
+                    }
+                    ?>
                 </td>
             </tr>
         </table>
@@ -188,7 +296,7 @@ if (isset($_GET['Folio_Nota_PK'])) {
         </form>
     </section>
     <footer class="footer">
-        <a href="../notas.php" class="btn_salir">Regresar</a>
+        <a href="../notas/buscar.php" class="btn_salir">Regresar</a>
         <a href="notas/../../../php/salir.php" class="btn_salir">Salir</a>
     </footer>
     <?php
