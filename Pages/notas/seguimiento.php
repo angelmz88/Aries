@@ -45,18 +45,42 @@ if (isset($_GET['Folio_Nota_PK'])) {
             const selectDesde = document.querySelector('select[name="area-mover-desde"]');
             const selectA = document.querySelector('select[name="area-mover"]');
 
+            // Obtener los valores seleccionados
+            const selectedValueDesde = selectDesde.value;
+            const selectedValueA = selectA.value;
+
             // Habilitar todas las opciones antes de aplicar la lógica de deshabilitación
             selectDesde.querySelectorAll('option').forEach(option => option.disabled = false);
             selectA.querySelectorAll('option').forEach(option => option.disabled = false);
 
-            const selectedValueDesde = selectDesde.value;
-            const selectedValueA = selectA.value;
-
+            // Deshabilitar opciones en "Mover a" basado en la selección en "Mover desde"
             if (selectedValueDesde) {
                 selectA.querySelector(`option[value="${selectedValueDesde}"]`).disabled = true;
+                if (selectedValueDesde === 'planta') {
+                    selectA.querySelector('option[value="lavado"]').disabled = true;
+                    selectA.querySelector('option[value="planta"]').disabled = true;
+                } else if (selectedValueDesde === 'lavado') {
+                    selectA.querySelector('option[value="lavado"]').disabled = true;
+                    selectA.querySelector('option[value="planta"]').disabled = true;
+                } else if (selectedValueDesde === 'planchado') {
+                    selectA.querySelector('option[value="lavado"]').disabled = true;
+                    selectA.querySelector('option[value="planta"]').disabled = true;
+                    selectA.querySelector('option[value="planchado"]').disabled = true;
+                } else if (selectedValueDesde === 'mostrador') {
+                    selectA.querySelector('option[value="mostrador"]').disabled = true;
+                }
             }
+
+            // Deshabilitar opciones en "Mover desde" basado en la selección en "Mover a"
             if (selectedValueA) {
                 selectDesde.querySelector(`option[value="${selectedValueA}"]`).disabled = true;
+                if (selectedValueA === 'planchado' || selectedValueA === 'mostrador') {
+                    selectDesde.querySelector('option[value="planta"]').disabled = true;
+                    selectDesde.querySelector('option[value="lavado"]').disabled = true;
+                }
+                if (selectedValueA === 'mostrador') {
+                    selectDesde.querySelector('option[value="planchado"]').disabled = true;
+                }
             }
         }
 
