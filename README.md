@@ -7,7 +7,7 @@ Este proyecto consiste en un sistema de administración web diseñado para facil
 ## Características principales
 
 - **Gestión de Pedidos:** Registre nuevos pedidos, realice seguimiento del progreso y notifique a los clientes cuando estén listos para la recogida.
-- **Gestión de Clientes:** Mantenga un registro de los clientes, incluidos sus detalles de contacto y preferencias de servicio.
+- **Gestión de Clientes:** Mantenga un registro de los clientes.
 - **Gestión de Inventarios:** Administre el inventario de productos y materiales necesarios para los servicios de limpieza en seco y lavandería.
 
 ## Tecnologías utilizadas
